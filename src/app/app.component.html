@@ -1,0 +1,11 @@
+<app-sidemenu></app-sidemenu>
+<app-header-home *ngIf="isHomePage()"></app-header-home>
+<app-header-default *ngIf="!isHomePage()"></app-header-default>
+<a id="edgtf-back-to-top" href="#">
+  <span class="edgtf-icon-stack">
+    <i class="edgtf-icon-font-awesome fa fa-angle-up"></i>
+  </span>
+</a>
+<router-outlet></router-outlet>
+<app-chatbot></app-chatbot>
+<app-footer></app-footer>

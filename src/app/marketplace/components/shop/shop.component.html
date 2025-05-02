@@ -1,0 +1,293 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div
+      class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+      style="
+        height: 150px;
+        background-color: #333133;
+        box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);
+      "
+      data-height="150"
+    >
+      <div class="edgtf-title-wrapper" style="height: 150px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Shop</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row">
+          <div [ngClass]="{'edgtf-grid-col-push-11': !isGridCol8, 'edgtf-grid-col-8': isGridCol8}"
+               class="edgtf-page-content-holder">
+            <div class="woocommerce-notices-wrapper"></div>
+            <p class="woocommerce-result-count">
+              Showing {{filteredArticle.length}} results
+            </p>
+            <div class="woocommerce-ordering">
+              <button type="submit" class="single_add_to_cart_button button alt"
+                      style="width: 35px; height: 35px; padding: 7px;  top: 8px; border-radius: 5px"
+                      (click)="toggleClass()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel"
+                     viewBox="0 0 16 16">
+                  <path
+                    d="M1.5 1.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.146.354L10 8.207v5.586l-4 2V8.207L1.646 2.854A.5.5 0 0 1 1.5 2.5v-1z"/>
+                </svg>
+              </button>
+            </div>
+            <!-- --------------main content------------------------ -->
+            <div class="edgtf-pl-main-holder">
+              <ul class="products columns-4">
+                <!-- ---------------products---------------------------- -->
+                <li
+                  *ngFor="let article of filteredArticle"
+                  class="product type-product post-346 status-publish first instock product_cat-equipment product_tag-pc product_tag-ps4 product_tag-xbox-one has-post-thumbnail shipping-taxable purchasable product-type-simple"
+                >
+                  <div class="edgtf-pl-inner">
+                    <div class="edgtf-pl-image">
+                      <img
+                        [src]="baseUrl + (article?.game?.imageUrls?.[article.game.imageUrls.length - 1])"
+                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                        alt="{{ article?.game?.gameName || 'Game Image' }}"
+                        decoding="async"
+                        fetchpriority="high"
+                        style="border-radius: 4px"
+                      />
+                      <div class="edgtf-pl-text">
+                        <div class="edgtf-pl-text-outer">
+                          <div class="edgtf-pl-text-inner">
+                            <a
+                              href="../game-detail/{{article.articleId}}/{{article.gameId}}"
+                              data-quantity="1"
+                              class="button product_type_simple add_to_cart_button ajax_add_to_cart">View details</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a
+                      href="../game-detail/{{article.articleId}}/{{article.gameId}}"
+                      class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+                    ></a>
+                  </div>
+                  <div class="edgtf-pl-text-wrapper">
+                    <p class="edgtf-product-list-title" style="font-size: 18px; font-weight: bold">
+                      <a href="../game-detail/{{article.articleId}}/{{article.gameId}}">{{
+                          article.game.gameName
+                        }}</a>
+                    </p>
+                    <span class="price" style="font-size: 18px"
+                    ><span class="woocommerce-Price-amount amount"
+                    ><bdi>{{
+                        article.price
+                      }}<span class="woocommerce-Price-currencySymbol"
+                      >&#36;</span></bdi></span></span><span class="edgtf-pl-category">
+                      <a
+                        href="../product-category/equipment/index.html"
+                        rel="tag"
+                      >{{ article.game.gameType }}</a
+                      ></span
+                  >
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+
+          <div *ngIf="isGridCol8" class="edgtf-sidebar-holder edgtf-grid-col-4">
+            <aside class="edgtf-sidebar">
+
+              <div class="widget widget_block">
+                <div
+                  data-block-name="woocommerce/product-search"
+                  data-placeholder="Search a game"
+                  data-form-id="wc-block-product-search-0"
+                  class="wc-block-product-search wp-block-woocommerce-product-search"
+                >
+                  <form
+                    role="search"
+                    method="get"
+                    action="https://playerx.qodeinteractive.com/elementor/"
+                  >
+                    <label
+                      for="wc-block-search__input-1"
+                      class="wc-block-product-search__label"
+                    >Search</label
+                    >
+                    <div class="wc-block-product-search__fields">
+                      <input
+                        type="search"
+                        id="wc-block-search__input-1"
+                        class="wc-block-product-search__field"
+                        placeholder="Search game"
+                        name="s"
+                        (input)="searchGames($event)"
+                      />
+                      <button
+                        type="submit"
+                        class="wc-block-product-search__button"
+                        aria-label="Search"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          role="img"
+                          focusable="false"
+                          class="dashicon dashicons-arrow-right-alt2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M6 15l5-5-5-5 1-2 7 7-7 7z"/>
+                        </svg>
+                      </button>
+                      <input type="hidden" name="post_type" value="product"/>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              <div class="widget woocommerce widget_price_filter">
+                <div class="edgtf-widget-title-holder">
+                  <h5 class="edgtf-widget-title">forgot the name ?</h5>
+                </div>
+                <div class="price_slider_wrapper" style="display: flex; flex-direction: column; align-items: flex-end;">
+                  <textarea
+                    placeholder="give me a description"
+                    rows="4"
+                    style="font-size: 14px; width: 100%;"
+                    [(ngModel)]="description"
+                    [readOnly]="isLoading"
+                  >
+                  </textarea>
+
+                  <div style="display: flex; gap: 10px; align-items: center;">
+
+                    <button
+                      *ngIf="!isLoading"
+                      type="submit"
+                      class="button"
+                      style="padding: 5px 20px; font-size: 15px"
+                      (click)="clearDescription()"
+                    >
+                      <i class="fas fa-eraser"></i>
+                      Clear
+                    </button>
+
+
+                    <button
+                      type="submit"
+                      class="button"
+                      style="padding: 5px 20px; font-size: 15px"
+                      (click)="guessGame()"
+                      [disabled]="isLoading"
+                    >
+                      <i *ngIf="!isLoading" class="fas fa-robot" style="margin-right: 1px;"></i>
+                      <i *ngIf="isLoading" class="fas fa-spinner fa-spin" style="margin-right: 1px;"></i>
+                      {{ isLoading ? 'Guessing...' : 'Guess' }}
+                    </button>
+
+
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="widget woocommerce widget_price_filter">
+                <div class="edgtf-widget-title-holder">
+                  <h5 class="edgtf-widget-title">Filter by price</h5>
+                </div>
+
+                <div class="price_slider_wrapper">
+                  <div class="price_slider" style="display: block"></div>
+                  <div class="price_slider_amount" data-step="10">
+                    <label class="screen-reader-text" for="min_price"
+                    >Min price</label
+                    >
+                    <input
+                      type="text"
+                      id="min_price"
+                      name="min_price"
+                      value="10"
+                      data-min="10"
+                      placeholder="Min price"
+                      style="display: none"
+                    />
+                    <label class="screen-reader-text" for="max_price"
+                    >Max price</label
+                    >
+                    <input
+                      type="text"
+                      id="max_price"
+                      name="max_price"
+                      value="120"
+                      data-max="120"
+                      placeholder="Max price"
+                      style="display: none"
+                    />
+                    <button type="submit" class="button">Filter</button>
+                    <div class="price_label" style="display: none">
+                      Price: <span class="from"></span> &mdash;
+                      <span class="to"></span>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="widget edgtf-title-widget">
+                <h5 class="edgtf-widget-title">Categories</h5>
+              </div>
+
+
+              <div class="widget widget_block">
+                <div
+                  data-block-name="woocommerce/product-categories"
+                  class="wp-block-woocommerce-product-categories wc-block-product-categories is-list"
+                >
+                  <ul class="wc-block-product-categories-list wc-block-product-categories-list--depth-0"
+                      style="cursor: pointer">
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory(null)">
+                      <span class="wc-block-product-categories-list-item__name">All</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Action')">
+                      <span class="wc-block-product-categories-list-item__name">Action</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Sports')">
+                      <span class="wc-block-product-categories-list-item__name">Sports</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Racing')">
+                      <span class="wc-block-product-categories-list-item__name">Racing</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Fighting')">
+                      <span class="wc-block-product-categories-list-item__name">Fighting</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Horror')">
+                      <span class="wc-block-product-categories-list-item__name">Horror</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('Adventure')">
+                      <span class="wc-block-product-categories-list-item__name">Adventure</span>
+                    </li>
+                    <li class="wc-block-product-categories-list-item" (click)="filterByCategory('FPS')">
+                      <span class="wc-block-product-categories-list-item__name">FPS</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- close div.content_inner -->
+</div>
+<!-- close div.content -->

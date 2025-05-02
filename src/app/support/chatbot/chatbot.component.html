@@ -1,0 +1,46 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-wrapper" style="height: 240px; position: relative; z-index: 1;">
+      <div class="edgtf-title-inner">
+        <!-- You can add a title here if needed -->
+      </div>
+    </div>
+  </div>
+  <div class="chat-toggle-button" (click)="toggleChat()">
+      💬
+    </div>
+  </div>
+  
+  <div class="chat-popup" [class.open]="isChatOpen">
+    <div class="chat-header">
+      <span> GameMax AI</span>
+      <button (click)="toggleChat()">✖</button>
+    </div>
+  
+    <div class="chat-box" #chatBox>
+      <div *ngFor="let message of messages" class="message-wrapper"
+           [ngClass]="{'align-user': message.sender === 'user', 'align-bot': message.sender === 'bot'}">
+        <div class="message-content" 
+             [ngClass]="{'user-msg': message.sender === 'user', 'bot-msg': message.sender === 'bot'}">
+          <div class="message-text">{{ message.text }}</div>
+          
+          <div *ngIf="message.options?.length" class="options-container">
+            <button *ngFor="let option of message.options"
+                    class="option-button"
+                    (click)="onOptionClick(option)">
+              {{ option }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="input-box">
+      <input type="text" [(ngModel)]="userMessage" 
+             (keydown.enter)="sendMessage()" 
+             placeholder="Type your question...">
+      <button (click)="sendMessage()" [disabled]="!userMessage.trim()">
+        Send
+      </button>
+    </div>
+  </div>

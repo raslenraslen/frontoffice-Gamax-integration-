@@ -1,0 +1,56 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <!-- Header Section -->
+    <div class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax"
+         style="height: 200px; box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3); background-image: url(../wp-content/uploads/2018/06/p4-title-img-1.jpg);"
+         data-height="200">
+      <div class="edgtf-title-image">
+        <img itemprop="image" src="../wp-content/uploads/2018/06/p4-title-img-1.jpg" alt="Header background" />
+      </div>
+      <div class="edgtf-title-wrapper" style="height: 200px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Help Center</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Categories Section -->
+    <div class="section text-muted categories-section">
+      <div class="container">
+        <!-- Heading -->
+        <div class="row">
+          <div class="col-12 text-center mb-4">
+            <div class="heading categories-heading">
+              <p class="lead">Choose a topic below to get started.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loop through categories -->
+        <div class="row">
+          <div class="col-sm-12 mb-3 col-md-6 col-lg-4" *ngFor="let category of categories">
+            <div (click)="onCategorySelect(category)" class="card-link" style="cursor: pointer;">
+              <div class="card card-minimal category-box text-center spacing-medium">
+                <div class="card-body">
+                  <span class="category-icon"
+                        style="font-size: 3em; margin: 15px auto; display: block; text-align: center;"
+                        aria-hidden="true">
+                    {{ getCategoryIcon(category) }}
+                  </span>
+                  <h4 class="card-title">{{ category }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <router-outlet></router-outlet>
+
+  </div> 
+</div> 

@@ -1,0 +1,9 @@
+{
+    "POST_FORM": {
+      "TITLE": "Title",
+      "CONTENT": "Content",
+      "FILES": "Files",
+      "SUBMIT": "Add post",
+      "REQUIRED": "This field is required"
+    }
+  }

@@ -1,0 +1,284 @@
+
+
+<div class="edgtf-content" >
+  <div class="edgtf-content-inner">
+    <div class="edgtf-full-width">
+      <div class="edgtf-full-width-inner">
+        <div class="edgtf-grid-row">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div data-elementor-type="wp-page" data-elementor-id="4056" class="elementor elementor-4056">
+              <section class="elementor-section elementor-top-section elementor-element elementor-element-d856eb4 elementor-section-full_width elementor-section-height-default elementor-section-height-default edgtf-parallax-row-no edgtf-row-with-shadow-disabled edgtf-content-aligment-left edgtf-elementor-row-grid-no" data-id="d856eb4" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div class="elementor-container elementor-column-gap-default">
+                  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a4cd45c" data-id="a4cd45c" data-element_type="column">
+                    <div class="elementor-widget-wrap elementor-element-populated">
+                      <section class="elementor-section elementor-inner-section elementor-element elementor-element-0e9213e elementor-section-full_width edgtf-elementor-row-grid-section elementor-section-height-default elementor-section-height-default edgtf-parallax-row-no edgtf-row-with-shadow-disabled edgtf-content-aligment-left" data-id="0e9213e" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                          <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-d4c15e6" data-id="d4c15e6" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                              <div class="elementor-element elementor-element-229084d elementor-widget elementor-widget-edgtf_section_title" data-id="229084d" data-element_type="widget" data-widget_type="edgtf_section_title.default">
+                                <div class="elementor-widget-container">
+                                  <div class="edgtf-section-title-holder  edgtf-st-minimal " style="text-align: left">
+                                    <div class="edgtf-st-inner">
+                                      <h5 class="edgtf-st-title" >
+                                        My Packs
+                                      </h5>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="elementor-element elementor-element-c1b069f elementor-widget elementor-widget-spacer" data-id="c1b069f" data-element_type="widget" data-widget_type="spacer.default">
+                                <div class="elementor-widget-container">
+                                  <style>/*! elementor - v3.7.8 - 02-10-2022 */
+                                  .elementor-column .elementor-spacer-inner{height:var(--spacer-size)}.e-container{--container-widget-width:100%}.e-container>.elementor-widget-spacer{width:var(--container-widget-width,var(--spacer-size));-ms-flex-item-align:stretch;align-self:stretch;-ms-flex-negative:0;flex-shrink:0}.e-container>.elementor-widget-spacer>.elementor-widget-container,.e-container>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer{height:100%}.e-container>.elementor-widget-spacer>.elementor-widget-container>.elementor-spacer>.elementor-spacer-inner{height:var(var(--spacer-size))}</style>		<div class="elementor-spacer">
+                                  <div class="elementor-spacer-inner"></div>
+                                </div>
+                                </div>
+                              </div>
+                              <div class="elementor-element elementor-element-43fd168c elementor-widget elementor-widget-edgtf_tabs" data-id="43fd168c" data-element_type="widget" data-widget_type="edgtf_tabs.default">
+                                <div class="elementor-widget-container">
+                                  <div class="edgtf-tabs tabs-without-padding edgtf-tabs-standard ">
+                                    <ul class="edgtf-tabs-nav clearfix">
+                                      <li
+                                        *ngFor="let cat of categories"
+                                        class="ui-tabs-tab ui-corner-top ui-state-default ui-tab"
+                                        [class.ui-tabs-active]="selectedCategory === cat"
+                                        [class.ui-state-active]="selectedCategory === cat"
+                                        [class.active]="selectedCategory === cat"
+                                        (click)="filterPacks(cat)">
+
+
+                                        <a href="javascript:void(0)">{{ cat }}</a>
+                                      </li>
+                                    </ul>
+
+                                    <div class="edgtf-tab-container" id="tab-all-matches-320"><p><div class="edgtf-match-list-holder-outer">
+                                      <div class="edgtf-match-list-holder edgtf-match-skin-dark" data-next-page= 2 data-order-by= menu_order data-order= ASC data-number= -1 data-title-tag= h5 data-team-title-tag= h6 data-show-categories= yes data-show-date= yes data-skin= dark data-show-result= yes data-show-load-more= no  data-max-num-pages = 0>
+                                      <article class="edgtf-match-status-finished" *ngFor="let pack of packs"  >
+
+                                      <div class="edgtf-match-item-holder">
+                                        <a class="edgtf-match-link" href="/singlePack/{{pack.packId}}" ></a>
+                                        <div class="edgtf-match-single-team">
+                                          <div class="edgtf-match-item-image-holder">
+                                            <img decoding="async" [src]="baseUrl + '/api'+pack.image.imageUrl"  alt="Hacksaw"/>
+                                          </div>
+
+                                          <div class="edgtf-match-item-text-holder">
+                                            <h6 class="edgtf-match-team-title">
+                                              {{pack.packName}}            </h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-match-info">
+                                          <div class="edgtf-match-category">
+                                            <span class="edgtf-match-category-holder"><span>all matches</span><span>latest results</span></span>			        </div>
+                                          <h5 class="edgtf-match-title">
+                                            {{pack.packName}}    </h5>
+                                          <div class="edgtf-match-date">
+                                            <span class="edgtf-match-date"> {{pack.availableDate | date:'longDate' }}  </span>		    </div>
+
+                                        </div>
+                                        <div class="edgtf-match-result-holder">
+                                          <span class="edgtf-match-info-status">{{ pack.packGames?.length }}</span>
+                                        </div>
+                                      </div>
+                                    </article>
+                                    </div>
+                                    </div>
+                                    </div>
+
+
+
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="elementor-element elementor-element-9e7a562 elementor-widget elementor-widget-spacer" data-id="9e7a562" data-element_type="widget" data-widget_type="spacer.default">
+                                <div class="elementor-widget-container">
+                                  <div class="elementor-spacer">
+                                    <div class="elementor-spacer-inner"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="elementor-element elementor-element-19c4bf7 elementor-widget elementor-widget-edgtf_section_title" data-id="19c4bf7" data-element_type="widget" data-widget_type="edgtf_section_title.default">
+                                <div class="elementor-widget-container">
+                                  <div class="edgtf-section-title-holder  edgtf-st-minimal " style="text-align: left">
+                                    <div class="edgtf-st-inner">
+                                      <h5 class="edgtf-st-title" >
+                                        Live Streams            </h5>
+                                    </div>
+                                  </div>		</div>
+                              </div>
+                              <div class="elementor-element elementor-element-21cc256 elementor-widget elementor-widget-spacer" data-id="21cc256" data-element_type="widget" data-widget_type="spacer.default">
+                                <div class="elementor-widget-container">
+                                  <div class="elementor-spacer">
+                                    <div class="elementor-spacer-inner"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="elementor-element elementor-element-356b618b elementor-widget elementor-widget-edgtf_tabs" data-id="356b618b" data-element_type="widget" data-widget_type="edgtf_tabs.default">
+                                <div class="elementor-widget-container">
+
+                                  <div class="edgtf-tabs tabs-without-padding edgtf-tabs-standard ">
+                                    <ul class="edgtf-tabs-nav clearfix">
+                                      <li>
+                                        <a href="#tab-twitch">Twitch</a>
+                                      </li>
+                                      <li>
+                                        <a href="#tab-youtube">Youtube</a>
+                                      </li>
+                                      <li>
+                                        <a href="#tab-mixer">Mixer</a>
+                                      </li>
+                                    </ul>
+
+                                    <div class="edgtf-tab-container" id="tab-twitch-564"><p><div class="edgtf-stream-box-holder  edgtf-sb-standard">
+                                      <div class="edgtf-sb-main-stream-item">
+                                        <div class="edgtf-sb-main-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.twitch.tv/" target="_blank"></a>
+                                          <div class="edgtf-sb-main-image">
+                                            <img loading="lazy" decoding="async" width="1245" height="700" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg 1245w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-600x337.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-300x169.jpg 300w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-1024x576.jpg 1024w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-768x432.jpg 768w" sizes="auto, (max-width: 1245px) 100vw, 1245px" />            </div>
+                                          <a class="edgtf-video-button-play" href="https://www.twitch.tv/" target="_blank">
+			<span class="edgtf-video-button-play-inner">
+				<i class="fas fa-play"></i>
+			</span>
+                                          </a>
+                                          <div class="edgtf-sb-text-holder">
+                                            <a href="https://www.twitch.tv/" target="_blank">
+                                              <h5 class="edgtf-sb-title">Destiny 2 Gameplay</h5>
+                                            </a>
+                                            <div class="edgtf-sb-platform">twitch</div>
+                                            <div class="edgtf-sb-channel">oyakkodon</div>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.twitch.tv/" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">CS: GO STREAM</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.twitch.tv/" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">DOTA 2 LIVE</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg);"></div>
+                                      </div>
+                                    </div></div>
+                                    <div class="edgtf-tab-container" id="tab-youtube-313"><div class="edgtf-stream-box-holder  edgtf-sb-standard">
+                                      <div class="edgtf-sb-main-stream-item">
+                                        <div class="edgtf-sb-main-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank"></a>
+                                          <div class="edgtf-sb-main-image">
+                                            <img loading="lazy" decoding="async" width="1245" height="700" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg 1245w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-600x337.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-300x169.jpg 300w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-1024x576.jpg 1024w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-768x432.jpg 768w" sizes="auto, (max-width: 1245px) 100vw, 1245px" />            </div>
+                                          <a class="edgtf-video-button-play" href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank">
+			<span class="edgtf-video-button-play-inner">
+				<i class="fas fa-play"></i>
+			</span>
+                                          </a>
+                                          <div class="edgtf-sb-text-holder">
+                                            <a href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank">
+                                              <h5 class="edgtf-sb-title">Dota 2 Live</h5>
+                                            </a>
+                                            <div class="edgtf-sb-platform">youtube</div>
+                                            <div class="edgtf-sb-channel">kasP Game</div>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">STREET FIGHTER</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">FORTNITE LIVE</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg);"></div>
+                                      </div>
+                                    </div></div>
+                                    <div class="edgtf-tab-container" id="tab-mixer-259"><div class="edgtf-stream-box-holder  edgtf-sb-standard">
+                                      <div class="edgtf-sb-main-stream-item">
+                                        <div class="edgtf-sb-main-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://mixer.com/" target="_blank"></a>
+                                          <div class="edgtf-sb-main-image">
+                                            <img loading="lazy" decoding="async" width="1245" height="700" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg 1245w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-600x337.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-300x169.jpg 300w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-1024x576.jpg 1024w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-1-768x432.jpg 768w" sizes="auto, (max-width: 1245px) 100vw, 1245px" />            </div>
+                                          <a class="edgtf-video-button-play" href="https://mixer.com/" target="_blank">
+			<span class="edgtf-video-button-play-inner">
+				<i class="fas fa-play"></i>
+			</span>
+                                          </a>
+                                          <div class="edgtf-sb-text-holder">
+                                            <a href="https://mixer.com/" target="_blank">
+                                              <h5 class="edgtf-sb-title">Destiny 2 Gameplay</h5>
+                                            </a>
+                                            <div class="edgtf-sb-platform">mixer</div>
+                                            <div class="edgtf-sb-channel">kmagic101</div>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-1.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://mixer.com/" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-3-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">OVERWATCH LIVE</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-3.jpg);"></div>
+                                      </div>
+                                      <div class="edgtf-sb-bottom-stream-item">
+                                        <div class="edgtf-sb-bottom-stream-holder">
+                                          <a class="edgtf-sb-link" href="https://mixer.com/" target="_blank"></a>
+                                          <div class="edgtf-sb-bottom-stream-image">
+                                            <img loading="lazy" decoding="async" width="621" height="350" src="assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg" class="attachment-full size-full" alt="a" srcset="https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg 621w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-600x338.jpg 600w, https://playerx.qodeinteractive.com/elementor/wp-content/uploads/2018/06/h1-streambox-v2-img-2-300x169.jpg 300w" sizes="auto, (max-width: 621px) 100vw, 621px" />            </div>
+                                          <div class="edgtf-sb-text-holder">
+                                            <h6 class="edgtf-sb-title">ROCKET LEAGUE</h6>
+                                          </div>
+                                        </div>
+                                        <div class="edgtf-stream-bgrnd" style="background-image: url(assets/wp-content/uploads/2018/06/h1-streambox-v2-img-2.jpg);"></div>
+                                      </div>
+                                    </div></div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

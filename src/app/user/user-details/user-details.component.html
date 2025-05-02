@@ -1,0 +1,99 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+      style="height: 240px; box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3); position: relative; overflow: hidden;" data-height="240">
+      <!-- 🎥 Vidéo de fond -->
+      <video id="bg-video" autoplay muted loop playsinline
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <source src="assets/videouser.mp4" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo HTML5.
+      </video>
+
+      <!-- 🧾 Contenu au-dessus de la vidéo -->
+      <div class="edgtf-title-wrapper" style="height: 240px; position: relative; z-index: 1;">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">User Details</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-details-container">
+      <div *ngIf="user" class="user-details">
+        <h2>User Details</h2>
+        <div class="user-details-grid">
+          <!-- Champs utilisateur -->
+          <div class="user-detail left">
+            <label for="clientId"><strong>Client ID:</strong></label>
+            <input type="text" id="clientId" [value]="user.clientId" readonly>
+          </div>
+          <div class="user-detail right">
+            <label for="firstName"><strong>First Name:</strong></label>
+            <input type="text" id="firstName" [value]="user.firstName" readonly>
+          </div>
+
+          <div class="user-detail left">
+            <label for="lastName"><strong>Last Name:</strong></label>
+            <input type="text" id="lastName" [value]="user.lastName" readonly>
+          </div>
+          <div class="user-detail right">
+            <label for="fullName"><strong>Full Name:</strong></label>
+            <input type="text" id="fullName" [value]="user.fullName" readonly>
+          </div>
+          <div class="user-detail left">
+            <label for="email"><strong>Email:</strong></label>
+            <input type="text" id="email" [value]="user.email" readonly>
+          </div>
+          <div class="user-detail right">
+            <label for="username"><strong>Username:</strong></label>
+            <input type="text" id="username" [value]="user.username" readonly>
+          </div>
+          <div class="user-detail left">
+            <label for="birthday"><strong>Birthday:</strong></label>
+            <input type="text" id="birthday" [value]="user.birthday | date:'yyyy-MM-dd'" readonly>
+          </div>
+          <div class="user-detail right">
+            <label for="age"><strong>Age:</strong></label>
+            <input type="text" id="age" [value]="user.age" readonly>
+          </div>
+          <div class="user-detail left">
+            <label for="password"><strong>Password:</strong></label>
+            <input type="password" id="password" [value]="user.password" readonly>
+          </div>
+          <div class="user-detail right">
+            <label for="gender"><strong>Gender:</strong></label>
+            <select id="gender" [(ngModel)]="user.gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!user" class="no-user-details">
+        <p>No user details available. Please log in.</p>
+      </div>
+
+      <div class="status-indicator-container">
+        <span class="status-indicator" [ngClass]="{'online': user?.isOnline, 'offline': !user?.isOnline}"></span>
+      </div>
+    </div>
+
+    <!-- Cercle à droite avec une petite marge -->
+    <div class="upload-circle-container">
+      <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
+      <label for="fileInput" class="upload-circle"></label>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var video = document.getElementById('bg-video');
+    video.addEventListener('error', function () {
+      video.load();
+      video.play();
+    });
+  });
+</script>

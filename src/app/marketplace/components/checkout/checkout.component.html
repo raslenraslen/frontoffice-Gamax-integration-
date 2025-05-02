@@ -1,0 +1,122 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+         style="height: 240px;box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3)" data-height="240">
+      <div class="edgtf-title-wrapper" style="height: 240px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Checkout</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="edgtf-container edgtf-default-page-template">
+
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row ">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div class="woocommerce">
+              <div class="woocommerce-notices-wrapper"></div>
+              <div class="woocommerce-form-coupon-toggle">
+
+                <div class="woocommerce-info">
+                  Have a coupon? <a class="showcoupon" style="cursor: pointer">Click here to enter your code</a>
+                </div>
+              </div>
+
+              <form class="checkout_coupon woocommerce-form-coupon" style="display:none">
+
+                <p>If you have a coupon code, please apply it below.</p>
+
+                <p class="form-row form-row-first">
+                  <label for="coupon_code" class="screen-reader-text">Coupon:</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="couponCode"
+                    name="coupon_code"
+                    class="input-text"
+                    placeholder="Coupon code"
+                    id="coupon_code"
+                    [readonly]="couponResult !== false"
+                    value=""/>
+                </p>
+
+                <a
+                  (click)="applyCoupon()"
+                  [style.pointer-events]="couponResult !== false ? 'none' : 'auto'"
+                  [style.opacity]="couponResult !== false ? '0.6' : '1'"
+                  style="font-size: 13px; font-weight: bold; cursor: pointer; background-color: #ff0e1f; color: white; padding: 12px 35px; border: none; text-decoration: none; display: inline-block; text-align: center;">
+                  APPLY COUPON
+                </a>
+                <p *ngIf="couponResult != false" style="color: green; font-size: 18px">This coupon is valid you have {{couponResult.discount}}% discount</p>
+                <p *ngIf="couponResult == false && isCouponChecked" style="color: #a20202; font-size: 18px">This coupon is invalid</p>
+                <div class="clear"></div>
+              </form>
+              <div class="woocommerce-notices-wrapper"></div>
+              <form name="checkout" class="checkout woocommerce-checkout">
+
+
+                <h3 id="order_review_heading">Your game</h3>
+
+                <div id="order_review" class="woocommerce-checkout-review-order">
+                  <table>
+                    <thead>
+                    <tr>
+                      <th class="product-name" style="font-size: 23px">Game</th>
+                      <th *ngIf="couponResult == false" class="product-total" style="font-size: 23px">Price</th>
+                      <th *ngIf="couponResult != false" class="product-total" style="font-size: 23px">Old Price</th>
+                      <th *ngIf="couponResult != false" class="product-total" style="font-size: 23px">Discount</th>
+                      <th *ngIf="couponResult != false" class="product-total" style="font-size: 23px">New price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="cart_item" style="font-size: 20px; ">
+                      <td class="product-name">
+                        {{ article.game.gameName }}
+                      </td>
+
+                      <td class="product-total">
+                        <span
+                          class="woocommerce-Price-amount amount"
+                          [style.text-decoration]="couponResult != false ? 'line-through' : 'none'">
+                          <bdi *ngIf="couponResult == false"><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ article.price }}</bdi>
+                          <bdi *ngIf="couponResult != false"><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ oldPrice }}</bdi>
+                        </span>
+                      </td>
+
+                      <td *ngIf="couponResult != false" class="product-name">
+                        {{ couponResult.discount }}%
+                      </td>
+
+                      <td *ngIf="couponResult != false" class="product-name">
+                        &#36;{{ article.price | number:'1.2-2' }}
+                      </td>
+
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                    <div class="form-row place-order">
+                      <button
+                        type="submit"
+                        name="woocommerce_checkout_place_order"
+                        (click)="pay()"
+                      >
+                        Pay
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div> <!-- close div.content_inner -->
+</div>

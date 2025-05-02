@@ -1,0 +1,69 @@
+<div class="edgtf-content" >
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax" style="height: 450px;box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);background-image:url(assets/wp-content/uploads/2018/06/port-title-img-1.jpg);" data-height="450">
+      <div class="edgtf-title-image">
+        <img itemprop="image" src="assets/wp-content/uploads/2018/06/port-title-img-1.jpg" alt="a" />
+      </div>
+      <div class="edgtf-title-wrapper" style="height: 450px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title" >{{ gameData.gameName }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-portfolio-single-holder edgtf-ps-small-images-layout">
+          <div class="edgtf-grid-row">
+            <div class="edgtf-grid-col-8">
+              <div class="edgtf-ps-image-holder">
+                <div class="edgtf-ps-image-inner">
+                  <div class="edgtf-ps-image">
+                    <a itemprop="image" title="port-1-gallery-1" data-rel="prettyPhoto[single_pretty_photo]" href="assets/wp-content/uploads/2018/06/port-1-gallery-1.jpg">
+                      <img itemprop="image" [src]="baseUrl + gameData.imageUrls[0]" alt="a" />
+                    </a>
+                  </div>
+                  <div class="edgtf-ps-image">
+                    <a itemprop="image" title="port-1-gallery-2" data-rel="prettyPhoto[single_pretty_photo]" href="assets/wp-content/uploads/2018/06/port-1-gallery-2.jpg">
+                      <img itemprop="image" [src]="baseUrl + gameData.imageUrls[1]" alt="a" />
+                    </a>
+                  </div>
+                  <div class="edgtf-ps-image">
+                    <a itemprop="image" title="port-1-gallery-3" data-rel="prettyPhoto[single_pretty_photo]" href="assets/wp-content/uploads/2018/06/port-1-gallery-3.jpg">
+                      <img itemprop="image" [src]="baseUrl + gameData.imageUrls[2]" alt="port-1-gallery-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="edgtf-grid-col-4">
+              <div class="edgtf-ps-info-holder edgtf-ps-info-sticky-holder">
+                <div class="edgtf-ps-info-item edgtf-ps-content-item">
+                  <p>
+                    {{ gameData.gameDescription }}
+                  </p>
+                </div>            <div class="edgtf-ps-info-item edgtf-ps-categories">
+                <h6 class="edgtf-ps-info-title">Category:</h6>
+                <a itemprop="url" class="edgtf-ps-info-category" href="../../portfolio-category/adventure/index.html">{{ gameData.gameType }}</a>
+              </div>
+                <div class="edgtf-ps-info-item edgtf-ps-date">
+                  <h6 class="edgtf-ps-info-title">Date:</h6>
+                  <p itemprop="dateCreated" class="edgtf-ps-info-date entry-date updated">{{ gameData.releaseDate | date:'longDate' }}</p>
+                  <meta itemprop="interactionCount" content="UserComments: 0"/>
+                </div>
+                <div class="edgtf-ps-info-item edgtf-ps-tags">
+                  <h6 class="edgtf-ps-info-title">Publisher:</h6>
+                  <a itemprop="url" class="edgtf-ps-info-tag" href="../../portfolio-tag/gaming/index.html">{{ gameData.publisher }}</a>
+                </div>
+                <a itemprop="url" href="#" target="_self" class="edgtf-btn edgtf-btn-large edgtf-btn-solid edgtf-btn-glow">        <span class="edgtf-btn-text">PLAY GAME</span>        </a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div></div> <!-- close div.content_inner -->
+</div>

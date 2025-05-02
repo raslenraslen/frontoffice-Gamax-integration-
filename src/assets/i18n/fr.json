@@ -1,0 +1,20 @@
+{
+    "POST_FORM": {
+      "TITLE": "Titre",
+      "CONTENT": "Contenu",
+      "FILES": "Fichiers",
+      "SUBMIT": "Ajouter le post",
+      "REQUIRED": "Ce champ est obligatoire",
+      "EXTRACT_TEXT": "Extraire le texte de l'image",
+      "EXTRACTING": "Extraction en cours...",
+      "TEXT_EXTRACTED": "Texte extrait avec succès !"
+   
+    },
+
+   
+      "ERRORS": {
+        "SELECT_IMAGE": "Veuillez sélectionner une image",
+        "TEXT_EXTRACTION_FAILED": "Échec de l'extraction du texte"
+      }
+    }
+  

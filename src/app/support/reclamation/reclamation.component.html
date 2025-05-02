@@ -1,0 +1,196 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-wrapper" style="height: 240px; position: relative; z-index: 1;">
+      <div class="edgtf-title-inner">
+        <div class="edgtf-grid">
+          <h3 class="edgtf-page-title entry-title">Gestion des Réclamations</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edgtf-container edgtf-default-page-template">
+    <div class="edgtf-container-inner clearfix">
+      <div class="edgtf-grid-row">
+        <div class="edgtf-page-content-holder edgtf-grid-col-12">
+          <div class="woocommerce">
+            <div class="woocommerce-notices-wrapper">
+              <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+            </div>
+
+            <div class="action-buttons">
+              <button type="button" class="btn btn-primary" (click)="showAddForm()">
+                <i class="fas fa-plus"></i> Ajouter une Réclamation
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="getReclamations()">
+                <i class="fas fa-sync-alt"></i> Actualiser la Liste
+              </button>
+            </div>
+
+            <form *ngIf="showForm" class="reclamation-form" [formGroup]="reclamationForm" (ngSubmit)="save()">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea id="description" class="form-control" formControlName="description" placeholder="Décrivez votre réclamation..." rows="3" (blur)="onDescriptionBlur()"></textarea>
+    <div *ngIf="submitted && reclamationForm.get('description')?.errors?.['required']" class="text-danger">
+      La description est requise.
+    </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Status</label>
+                <div class="status-display">
+                  <span class="status-badge status-open">OUVERT</span>
+                  <input type="hidden" formControlName="status" value="OUVERT">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Type</label>
+                <select formControlName="typeRec">
+                  <option value="">-- Choisir un type --</option>
+                  <option value="TECHNIQUE">Technique</option>
+                  <option value="PAIEMENT">Paiment</option>
+                  <option value="AUTRE">Autre</option>
+                </select>
+                <div *ngIf="submitted && reclamationForm.get('typeRec')?.errors?.['required']" class="text-danger">
+      Le type est requis.
+    </div>
+              </div>
+
+              <div class="file-input-container">
+                <label class="file-input-label">
+                  {{ actionType === 'add' ? 'Joindre un fichier (optionnel)' : 'Remplacer/Ajouter un fichier (optionnel)' }}
+               </label>
+                <div class="file-input-wrapper">
+                  <label class="file-input-label-inside" [class.file-selected]="selectedFile">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>{{ selectedFile ? selectedFile.name : 'Cliquez pour sélectionner ou glissez-déposez' }}</span>
+                    <span class="file-hint">(Formats supportés: JPG, PNG, PDF)</span>
+                  </label>
+                  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileInput>
+                </div>
+                <button *ngIf="selectedFile" type="button" class="btn btn-sm btn-warning mt-2 me-2"
+                (click)="selectedFile = undefined; fileInput.value = ''">
+             <i class="fas fa-times"></i> Annuler sélection
+     </button>
+                <button *ngIf="selectedFile" type="button" class="btn btn-sm btn-secondary" 
+                        (click)="previewUploadedFile()" style="margin-top: 0.5rem;">
+                  <i class="fas fa-eye"></i> Prévisualiser le fichier
+                </button>
+              </div>
+
+                        <!-- *** MINIMAL CHANGE: Add Checkbox conditionally for update *** -->
+          <div *ngIf="actionType === 'update' && selectedRec && selectedRec.attachments && selectedRec.attachments.length > 0" class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" formControlName="removeAttachments" id="removeAttachmentsCheckbox">
+            <label class="form-check-label" for="removeAttachmentsCheckbox">
+              Supprimer la/les pièce(s) jointe(s) existante(s)
+            </label>
+        </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  {{ actionType === 'add' ? 'Ajouter' : 'Mettre à jour' }}
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="cancelForm()">
+                  Annuler
+                </button>
+              </div>
+            </form>
+
+            <div class="reclamations-list" *ngIf="(reclamations?.length ?? 0) > 0">
+              <h4>Mes Réclamations</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rec of reclamations">
+                    <td>{{ rec.typeRec }}</td>
+                    <td>{{ rec.description }}</td>
+                    <td>
+                      <span [ngClass]="{
+                        'status-open': rec.status === 'OUVERT',
+                        'status-in-progress': rec.status === 'EN_COURS',
+                        'status-resolved': rec.status === 'RESOLU'
+                      }">
+                        {{ rec.status }}
+                      </span>
+                    </td>
+                    <td>{{ rec.dateCreation | date:'mediumDate' }}</td>
+                    <td>
+                      <button class="btn btn-info btn-sm" (click)="showUpdateForm(rec)">
+                        <i class="fas fa-edit"></i> Modifier
+                      </button>
+                      <button class="btn btn-danger btn-sm" (click)="removeRec(rec.id_rec)">
+                        <i class="fas fa-trash"></i> Supprimer
+                      </button>
+                      <button *ngIf="(rec.attachments?.length ?? 0) > 0" class="btn btn-preview btn-sm"
+                        (click)="previewAttachment(rec.attachments![0])"> 
+                    <i class="fas fa-eye"></i> Voir
+                </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div *ngIf="(reclamations?.length ?? 0) === 0" class="no-records">
+              <p>Aucune réclamation trouvée.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preview Modal for Attachments -->
+<div *ngIf="showPreviewModal" class="preview-modal">
+  <div class="preview-modal-content">
+    <button class="close-button" (click)="closePreview()">&times;</button>
+    
+    <div *ngIf="isImageFile(currentFileType)" class="image-preview">
+      <img [src]="previewUrl" alt="Preview du fichier">
+    </div>
+    
+    <div *ngIf="isPdfFile(currentFileType)" class="pdf-preview">
+      <object [data]="previewUrl" type="application/pdf" width="100%" height="100%">
+        <p>Votre navigateur ne supporte pas la prévisualisation PDF.</p>
+      </object>
+    </div>
+    
+    <div *ngIf="currentFileType && !isImageFile(currentFileType) && !isPdfFile(currentFileType)" class="unsupported-preview">
+      <i class="fas fa-file-alt fa-5x"></i>
+      <p>Prévisualisation non disponible pour ce type de fichier</p>
+    </div>
+  </div>
+</div>
+
+<!-- Upload Preview Modal -->
+<div *ngIf="showUploadPreviewModal" class="preview-modal">
+  <div class="preview-modal-content">
+    <button class="close-button" (click)="closeUploadPreview()">&times;</button>
+    
+    <div *ngIf="isImageFile(currentUploadFileType)" class="image-preview">
+      <img [src]="uploadPreviewUrl" alt="Preview du fichier uploadé">
+    </div>
+    
+    <div *ngIf="isPdfFile(currentUploadFileType)" class="pdf-preview">
+      <object [data]="uploadPreviewUrl" type="application/pdf" width="100%" height="100%">
+        <p>Votre navigateur ne supporte pas la prévisualisation PDF.</p>
+      </object>
+    </div>
+    
+    <div *ngIf="currentUploadFileType && !isImageFile(currentUploadFileType) && !isPdfFile(currentUploadFileType)" class="unsupported-preview">
+      <i class="fas fa-file-alt fa-5x"></i>
+      <p>Prévisualisation non disponible pour ce type de fichier</p>
+      <p>{{ selectedFile?.name }}</p>
+    </div>
+  </div>
+</div>

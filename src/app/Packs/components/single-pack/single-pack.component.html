@@ -1,0 +1,90 @@
+<div class="edgtf-content" >
+  <div class="edgtf-content-inner">
+    <div
+      class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax"
+      [ngStyle]="{
+    'height': '450px',
+    'box-shadow': '15px 15px 21px 0px rgba(1, 1, 1, 0.3)',
+    'background-image': 'url(' + baseUrl + '/api' + PackImage + ')'
+  }"
+      data-height="450"
+    >
+      <div class="edgtf-title-image">
+        <img itemprop="image" [src]="baseUrl + '/api' + PackImage" alt="a" />
+      </div>
+      <div class="edgtf-title-wrapper" style="height: 450px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title" >{{ PackName }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="edgtf-full-width">
+      <div class="edgtf-full-width-inner">
+        <div class="edgtf-grid-row">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div data-elementor-type="wp-page" data-elementor-id="4544" class="elementor elementor-4544">
+              <section class="elementor-section elementor-top-section elementor-element elementor-element-233bed0 elementor-section-full_width edgtf-elementor-row-grid-section elementor-section-height-default elementor-section-height-default edgtf-parallax-row-no edgtf-row-with-shadow-disabled edgtf-content-aligment-left" data-id="233bed0" data-element_type="section">
+                <div class="elementor-container elementor-column-gap-default">
+                  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-65d96f8" data-id="65d96f8" data-element_type="column">
+                    <div class="elementor-widget-wrap elementor-element-populated">
+                      <div class="elementor-element elementor-element-63e2144 elementor-widget elementor-widget-edgtf_portfolio_list" data-id="63e2144" data-element_type="widget" data-widget_type="edgtf_portfolio_list.default">
+                        <div class="elementor-widget-container">
+                          <div class="edgtf-portfolio-list-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-pl-gallery edgtf-three-columns edgtf-normal-space edgtf-pl-standard-shader    edgtf-pl-pag-load-more edgtf-pl-has-filter    "  data-type=gallery data-number-of-columns=three data-space-between-items=normal data-number-of-items=9 data-image-proportions=full data-enable-image-shadow=no data-category=esports data-orderby=date data-order=ASC data-item-style=standard-shader data-content-bottom-margin=23px data-enable-title=yes data-title-tag=h5 data-enable-category=yes data-enable-count-images=no data-enable-excerpt=no data-pagination-type=load-more data-filter=yes data-filter-order-by=name data-enable-article-animation=no data-portfolio-slider-on=no data-enable-fullheight=yes data-portfolio-slider-full-height-decrease=yes data-enable-loop=yes data-enable-autoplay=yes data-slider-speed=5000 data-slider-speed-animation=600 data-slider-padding=no data-enable-center=yes data-enable-navigation=yes data-enable-pagination=yes data-max-num-pages=2 data-next-page=2>
+                            <div class="edgtf-pl-inner edgtf-outer-space  clearfix">
+                              <article class="edgtf-pl-item edgtf-item-space edgtf-masonry-size-small post-1388 portfolio-item type-portfolio-item status-publish has-post-thumbnail hentry portfolio-category-adventure portfolio-category-esports portfolio-tag-gaming portfolio-tag-rpg"
+                                       *ngFor="let game of fullGamePack"  >
+                                <a href="/singleGame/{{game.gameId}}">
+                                <div class="edgtf-pl-item-inner">
+                                  <div class="edgtf-pli-image">
+                                    <img
+                                      fetchpriority="high"
+                                      decoding="async"
+                                      width="1100"
+                                      height="1100"
+                                      [src]="baseUrl + game.imageUrls[0]"
+                                      class="attachment-full size-full wp-post-image"
+                                      alt="{{ game.gameName }}"
+                                      sizes="(max-width: 1100px) 100vw, 1100px" />
+                                  </div>
+                                  <div class="edgtf-pli-text-holder" style="margin-bottom: 23px">
+                                    <div class="edgtf-pli-text-wrapper">
+                                      <div class="edgtf-pli-text">
+                                        <h5 itemprop="name" class="edgtf-pli-title entry-title">
+                                          {{ game.gameName }}
+                                        </h5>
+                                        <div class="edgtf-pli-category-holder">
+                                          <a itemprop="url" class="edgtf-pli-category">{{ game.gameType }}</a>
+                                          <a itemprop="url" class="edgtf-pli-category" >{{ game.publisher }}</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <a itemprop="url" class="edgtf-pli-link edgtf-block-drag-link"  target="_self"></a>
+                                </div>
+                                </a>
+                              </article>
+
+                            </div>
+
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div> <!-- close div.content_inner -->
+</div>

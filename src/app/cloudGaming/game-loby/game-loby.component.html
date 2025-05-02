@@ -1,0 +1,101 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax" 
+         style="height: 400px;box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);background-image:url(assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg);" 
+         data-height="400">
+      <div class="edgtf-title-image">
+        <img itemprop="image" src="assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg" alt="a" />
+      </div>
+      <div class="edgtf-title-wrapper" style="height: 400px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Game Lobbies</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row edgtf-grid-normal-gutter">
+          <div class="edgtf-page-content-holder edgtf-grid-col-8 edgtf-grid-col-push-4">
+            <div class="edgtf-blog-holder edgtf-blog-standard edgtf-blog-pagination-standard">
+              <div class="edgtf-blog-holder-inner">
+                <!-- Bouton pour lancer une nouvelle instance -->
+                <div class="edgtf-instance-launch">
+                  <button (click)="launchInstance()" class="edgtf-btn edgtf-btn-solid">
+                    Launch New Instance
+                  </button>
+                  <div class="edgtf-instance-select">
+                    <label for="gameId">Game ID:</label>
+                    <input type="number" id="gameId" [(ngModel)]="gameId" min="1">
+                  </div>
+                </div>
+
+                <!-- Section des instances en ligne -->
+                <div class="edgtf-instance-section">
+                  <h4 class="edgtf-instance-section-title">Online Instances ({{onlineInstances.length}})</h4>
+                  <div *ngIf="onlineInstances.length === 0" class="edgtf-no-instances">
+                    No online instances available
+                  </div>
+                  <div *ngFor="let instance of onlineInstances" class="edgtf-instance-item">
+                    <div class="edgtf-instance-image">
+                      <img src="assets/wp-content/uploads/2018/06/blog-1-img-3.jpg" alt="Game Instance">
+                    </div>
+                    <div class="edgtf-instance-details">
+                      <h5 class="edgtf-instance-title">Instance #{{instance.id}}</h5>
+                      <div class="edgtf-instance-meta">
+                        <span class="edgtf-instance-status edgtf-online">Online</span>
+                        <span class="edgtf-instance-game">Game ID: {{instance.gameId}}</span>
+                      </div>
+                      <div class="edgtf-instance-actions">
+                        <button class="edgtf-btn edgtf-btn-small edgtf-btn-outline">Join</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section de toutes les instances -->
+                <div class="edgtf-instance-section">
+                  <h4 class="edgtf-instance-section-title">All Instances ({{instances.length}})</h4>
+                  <div *ngIf="instances.length === 0" class="edgtf-no-instances">
+                    No instances available
+                  </div>
+                  <div *ngFor="let instance of instances" class="edgtf-instance-item">
+                    <div class="edgtf-instance-image">
+                      <img src="assets/wp-content/uploads/2018/06/blog-1-img-3.jpg" alt="Game Instance">
+                    </div>
+                    <div class="edgtf-instance-details">
+                      <h5 class="edgtf-instance-title">Instance #{{instance.id}}</h5>
+                      <div class="edgtf-instance-meta">
+                        <span class="edgtf-instance-status" 
+                              [class.edgtf-online]="instance.status === 'ONLINE'" 
+                              [class.edgtf-offline]="instance.status !== 'ONLINE'">
+                          {{instance.status}}
+                        </span>
+                        <span class="edgtf-instance-game">Game ID: {{instance.gameId}}</span>
+                      </div>
+                      <div class="edgtf-instance-actions">
+                        <button *ngIf="instance.status === 'ONLINE'" 
+                                class="edgtf-btn edgtf-btn-small edgtf-btn-outline">
+                          Join
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar (conservée telle quelle) -->
+          <div class="edgtf-sidebar-holder edgtf-grid-col-4 edgtf-grid-col-pull-8">
+            <aside class="edgtf-sidebar">
+              <!-- ... le contenu de la sidebar reste inchangé ... -->
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

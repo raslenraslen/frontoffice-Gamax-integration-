@@ -1,0 +1,52 @@
+<!-- Ajoute ce message d'avertissement juste avant le formulaire -->
+<div *ngIf="!authService.currentUserValue" class="login-warning">
+  {{ 'ERRORS.LOGIN_TO_POST' | translate }}
+</div>
+
+<!-- Ajoute la condition *ngIf sur la balise form -->
+<form *ngIf="authService.currentUserValue" 
+      #postForm="ngForm" 
+      (ngSubmit)="onSubmit()" 
+      enctype="multipart/form-data">
+
+  <!-- Le reste de ton formulaire existant reste inchangé -->
+  <div class="language-switcher">
+    <span (click)="switchLanguage('en')">EN</span>
+    <span (click)="switchLanguage('fr')">FR</span>
+  </div>
+
+  <div>
+    <label for="title">{{ 'POST_FORM.TITLE' | translate }}</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="post.title"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="assets">{{ 'POST_FORM.FILES' | translate }}</label>
+    <input
+      type="file"
+      id="assets"
+      (change)="onFileChange($event)"
+      multiple
+    />
+  </div>
+
+  <button 
+  type="button" 
+  (click)="extractTextFromImage()"
+
+  class="extract-btn"
+>
+  {{ isExtracting ? ('POST_FORM.EXTRACTING' | translate) : ('POST_FORM.EXTRACT_TEXT' | translate) }}
+</button>
+
+  <button type="submit" [disabled]="!postForm.form.valid">
+    {{ 'POST_FORM.SUBMIT' | translate }}
+  </button>
+
+</form>

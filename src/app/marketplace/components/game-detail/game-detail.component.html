@@ -1,0 +1,494 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+
+
+    <div
+      class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+      style="
+            height: 150px;
+            background-color: #333133;
+            box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);
+          "
+      data-height="150"
+    >
+      <div class="edgtf-title-wrapper" style="height: 150px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h4 class="edgtf-page-title entry-title">{{ article?.game?.gameName }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--    <div-->
+    <!--      class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax"-->
+    <!--      style="height: 450px; box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);"-->
+    <!--      [style.background-image]="'url(' + 'http://localhost:8080' + (article?.game?.imageUrls[0] || '') + ')'"-->
+    <!--      data-height="450">-->
+    <!--      <div class="edgtf-title-image">-->
+    <!--        <img itemprop="image" [src]="'http://localhost:8080' + (article?.game?.imageUrls[0] || '')" alt="a"/>-->
+    <!--      </div>-->
+    <!--      <div class="edgtf-title-wrapper" style="height: 450px">-->
+    <!--        <div class="edgtf-title-inner">-->
+    <!--          <div class="edgtf-grid">-->
+    <!--            <h3 class="edgtf-page-title entry-title"></h3>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+
+    <div class="edgtf-container">
+      <div class="edgtf-container-inner clearfix">
+        <div class="woocommerce-notices-wrapper"></div>
+        <div
+          id="product-197"
+          class="product type-product post-197 status-publish first instock product_cat-games product_tag-pc product_tag-ps4 product_tag-xbox-one has-post-thumbnail shipping-taxable purchasable product-type-simple"
+        >
+          <div class="edgtf-single-product-content">
+            <div
+              class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images"
+              data-columns="4"
+              style="opacity: 0; transition: opacity 0.25s ease-in-out"
+            >
+
+              <figure class="woocommerce-product-gallery__wrapper" style="top: 67px">
+                <app-bootstrap-carousel [imageUrls]="article?.game?.imageUrls ?? []"></app-bootstrap-carousel>
+              </figure>
+
+
+            </div>
+            <div class="edgtf-single-product-summary">
+              <div class="summary entry-summary">
+                <h4 itemprop="name" class="edgtf-single-product-title">
+                  {{ article?.game?.gameName }}
+                </h4>
+                <p class="price">
+                  <span class="woocommerce-Price-amount amount"
+                  ><bdi
+                  ><span class="woocommerce-Price-currencySymbol"
+                  >&#36;</span
+                  >{{ article?.price }}</bdi
+                  ></span
+                  >
+                </p>
+
+
+                <form
+                  class="cart"
+                  action="https://playerx.qodeinteractive.com/elementor/product/dangerzone/"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+
+                  <a *ngIf="!isBuyed" [routerLink]="['/checkout', article.articleId]">
+                    <button type="submit" value="197" class="single_add_to_cart_button button alt">BUY NOW</button>
+                  </a>
+
+                  <a *ngIf="isBuyed">
+                    <button type="submit" value="197" class="single_add_to_cart_button button alt">PLAY NOW</button>
+                  </a>
+
+                </form>
+
+                <div class="product_meta">
+                  <span class="sku_wrapper"
+                  >Publisher: <span class="sku">{{ article?.game?.publisher }}</span></span
+                  >
+
+                  <span class="posted_in"
+                  >Category:
+                    <a href="../../product-category/games/index.html" rel="tag"
+                    >{{ article?.game?.gameType }}</a
+                    ></span
+                  >
+                  <span class="tagged_as"
+                  >Release Date:
+                    <a href="../../product-tag/pc/index.html"
+                       rel="tag">{{ article?.game?.releaseDate | date:'MMMM d, y' }}</a>
+                    </span
+                    >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="woocommerce-tabs wc-tabs-wrapper">
+            <ul class="tabs wc-tabs" role="tablist">
+              <li
+                class="description_tab"
+                id="tab-title-description"
+                role="tab"
+                aria-controls="tab-description"
+              >
+                <a href="#tab-description" (click)="toggleoffreviews()"> Description </a>
+              </li>
+              <li
+                class="additional_information_tab"
+                id="tab-title-additional_information"
+                role="tab"
+                aria-controls="tab-additional_information"
+              >
+                <a (click)="toggleoffreviews()" href="#tab-additional_information">
+                  Additional information
+                </a>
+              </li>
+              <li
+                class="reviews_tab"
+                id="tab-title-reviews"
+                role="tab"
+                aria-controls="tab-reviews"
+              >
+                <a href="#tab-reviews"> Reviews ({{ reviews.length }}) </a>
+              </li>
+            </ul>
+            <div
+              class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
+              id="tab-description"
+              role="tabpanel"
+              aria-labelledby="tab-title-description"
+            >
+              <h2>Description</h2>
+
+              <p>
+                {{ article?.game?.gameDescription }}
+              </p>
+            </div>
+            <div
+              class="woocommerce-Tabs-panel woocommerce-Tabs-panel--additional_information panel entry-content wc-tab"
+              id="tab-additional_information"
+              role="tabpanel"
+              aria-labelledby="tab-title-additional_information"
+            >
+              <h2>Additional information</h2>
+
+              <table class="woocommerce-product-attributes shop_attributes">
+                <tr
+                  class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight"
+                >
+                  <th class="woocommerce-product-attributes-item__label">
+                    Platforms
+                  </th>
+                  <td class="woocommerce-product-attributes-item__value">
+                    {{ article?.game?.platform }}
+                  </td>
+                </tr>
+                <tr
+                  class="woocommerce-product-attributes-item woocommerce-product-attributes-item--dimensions"
+                >
+                  <th class="woocommerce-product-attributes-item__label">
+                    Publisher
+                  </th>
+                  <td class="woocommerce-product-attributes-item__value">
+                    {{ article?.game?.publisher }}
+                  </td>
+                </tr>
+
+
+                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight">
+                  <th class="woocommerce-product-attributes-item__label">
+                    Rating
+                  </th>
+                  <td class="woocommerce-product-attributes-item__value">
+
+
+                    <div class="star-display">
+                      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                        <ng-container *ngIf="getAverageRating() >= star">
+
+                          <svg viewBox="0 0 24 24" class="star filled">
+                            <path
+                              d="M12 .587l3.668 7.431L24 9.748l-6 5.843 1.416 8.263L12 19.771l-7.416 4.083L6 15.591 0 9.748l8.332-1.73z"/>
+                          </svg>
+                        </ng-container>
+                        <ng-container *ngIf="getAverageRating() >= star - 0.5 && getAverageRating() < star">
+
+                          <svg viewBox="0 0 24 24" class="star half">
+                            <defs>
+                              <linearGradient id="halfGradient">
+                                <stop offset="50%" stop-color="#ff0e1f"/>
+                                <stop offset="50%" stop-color="#ccc"/>
+                              </linearGradient>
+                            </defs>
+                            <path fill="url(#halfGradient)"
+                                  d="M12 .587l3.668 7.431L24 9.748l-6 5.843 1.416 8.263L12 19.771l-7.416 4.083L6 15.591 0 9.748l8.332-1.73z"/>
+                          </svg>
+                        </ng-container>
+                        <ng-container *ngIf="getAverageRating() < star - 0.5">
+
+                          <svg viewBox="0 0 24 24" class="star empty">
+                            <path
+                              d="M12 .587l3.668 7.431L24 9.748l-6 5.843 1.416 8.263L12 19.771l-7.416 4.083L6 15.591 0 9.748l8.332-1.73z"/>
+                          </svg>
+                        </ng-container>
+                      </ng-container>
+                      <small style="margin-left: 8px; ">({{ getAverageRating() }} / 5)</small>
+                    </div>
+
+
+                  </td>
+                </tr>
+
+
+              </table>
+            </div>
+            <div
+              class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab"
+              id="tab-reviews"
+              role="tabpanel"
+              aria-labelledby="tab-title-reviews"
+            >
+              <div id="reviews" class="woocommerce-Reviews">
+                <div id="comments">
+                  <h2 class="woocommerce-Reviews-title">
+                    {{ reviews.length }} review(s) for <span>{{ article?.game?.gameName }}</span>
+                  </h2>
+
+                  <ol *ngFor="let review of reviews" class="commentlist">
+                    {{ review.user.profilePictureUrl }}
+                    <li
+                      class="comment even thread-even depth-1"
+                      id="li-comment-16"
+                    >
+                      <div id="comment-16" class="comment_container">
+                        <img
+                          alt=""
+                          [src]="review.user.profilePictureUrl"
+                          [srcset]="review.user.profilePictureUrl"
+                          class="avatar avatar-60 photo"
+                          height="60"
+                          width="60"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div class="comment-text">
+                          <!--                          houni-->
+
+
+                          <div class="meta" style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center;">
+                              <strong class="woocommerce-review__author">{{ review.user.username }}</strong>
+                              <span class="woocommerce-review__dash" style="margin: 0 5px;">&ndash;</span>
+                              <time
+                                class="woocommerce-review__published-date">{{ review.reviewDate | date:'MMMM,d,y hh:mm' }}</time>
+                            </span>
+                            <div class="custom-select-wrapper">
+                              <select *ngIf="review.user.userId == currentUserId" class="action-select"
+                                      (change)="onSelectChange($event, review)">
+                                <option value="" disabled selected></option>
+                                <option value="update">Update</option>
+                                <option value="delete">Delete</option>
+                              </select>
+                              <span class="custom-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-three-dots" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+
+
+                          <div class="starse">
+                            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                              <span [class.filled]="star <= review.rating">★</span>
+                            </ng-container>
+                          </div>
+
+                          <div class="description">
+                            <p *ngIf="!review.isEditing">
+                              {{ review.reviewText }}
+                            </p>
+
+                            <textarea *ngIf="review.isEditing" [(ngModel)]="review.reviewText" rows="5"></textarea>
+                            <p *ngIf="review.isEditing" class="form-submit">
+                              <button
+                                type="submit"
+                                class="submit"
+                                style="padding: 5px; margin-right: 10px; border-radius: 5px"
+                                (click)="updateReview(review)">
+                                Update
+                              </button>
+                              <a style="cursor: pointer" (click)="toggleEdit(review)">Cancel</a>
+                            </p>
+
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <!-- #comment-## -->
+                  </ol>
+                </div>
+
+                <div id="review_form_wrapper">
+                  <div id="review_form">
+                    <div id="respond" class="comment-respond">
+                      <span id="reply-title" class="comment-reply-title">Add a review<small>
+                        <a
+
+                          rel="nofollow"
+                          id="cancel-comment-reply-link"
+                          href="index.html#respond"
+                          style="display: none"
+                        >Cancel reply</a
+                        ></small
+                      ></span
+                      >
+                      <h5 *ngIf="!isUplodable" style="color: #ff0e1f">Your review contains inappropriate content and
+                        cannot be submitted</h5>
+                      <form
+                        [formGroup]="reviewForm"
+                        (ngSubmit)="onSubmitReview()"
+                        class="comment-form"
+                      >
+                        <div class="comment-form-rating">
+                          <label>Your rating&nbsp;<span class="required">*</span></label>
+                          <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched"
+                               class="error">
+                            <small *ngIf="reviewForm.get('rating')?.errors?.['required']" style="color: #ff0e1f">Rating
+                              is required.</small>
+                          </div>
+                          <div class="stars">
+                            <input type="radio" id="star5" formControlName="rating" value="5"/>
+                            <label for="star5" title="5 stars">★</label>
+
+                            <input type="radio" id="star4" formControlName="rating" value="4"/>
+                            <label for="star4" title="4 stars">★</label>
+
+                            <input type="radio" id="star3" formControlName="rating" value="3"/>
+                            <label for="star3" title="3 stars">★</label>
+
+                            <input type="radio" id="star2" formControlName="rating" value="2"/>
+                            <label for="star2" title="2 stars">★</label>
+
+                            <input type="radio" id="star1" formControlName="rating" value="1"/>
+                            <label for="star1" title="1 star">★</label>
+                          </div>
+                        </div>
+                        <p class="comment-form-comment">
+                          <label for="comment">Your review&nbsp;<span class="required">*</span></label>
+                        <div *ngIf="reviewForm.get('reviewText')?.invalid && reviewForm.get('reviewText')?.touched"
+                             class="error">
+                          <small *ngIf="reviewForm.get('reviewText')?.errors?.['required']" style="color: #ff0e1f">Review
+                            text is
+                            required.</small>
+                          <small *ngIf="reviewForm.get('reviewText')?.errors?.['minlength']" style="color: #ff0e1f">
+                            Review must be at least 5 characters long.
+                          </small>
+                        </div>
+                        <textarea id="comment" formControlName="reviewText" cols="45" rows="8"></textarea>
+
+
+                        <p class="form-submit">
+                          <button type="submit" class="submit">Submit</button>
+                        </p>
+
+                      </form>
+                    </div>
+                    <!-- #respond -->
+                  </div>
+                </div>
+
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- close div.content_inner -->
+</div>
+
+<style>
+  .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .stars input[type="radio"] {
+    display: none;
+  }
+
+  .stars label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .stars input[type="radio"]:checked ~ label {
+    color: #ff0e1f
+  }
+
+  .stars label:hover,
+  .stars label:hover ~ label {
+    color: #ff0e1f
+  }
+
+
+  .starse {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .starse span {
+    font-size: 1rem;
+    color: #ccc;
+  }
+
+  .starse span.filled {
+    color: #ff0e1f;
+  }
+
+
+  .star {
+    width: 18px;
+    height: 18px;
+
+    fill: #ccc;
+  }
+
+  .star.filled path {
+    fill: #ff0e1f;
+  }
+
+  .star.empty path {
+    fill: #ccc;
+  }
+
+  .star.half path {
+    fill: url(#halfGradient);
+  }
+
+  .star-display {
+    display: flex;
+    align-items: center;
+  }
+
+
+  .action-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    font-size: 14px;
+    color: #131213;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100px;
+    padding: 5px;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+</style>

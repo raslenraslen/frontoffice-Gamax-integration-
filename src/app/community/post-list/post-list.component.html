@@ -1,0 +1,254 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+
+    <div class="edgtf-search-container">
+      <div class="edgtf-search-bar">
+        <i class="fas fa-search edgtf-search-icon"></i>
+        <input type="text"
+               [(ngModel)]="searchTerm"
+               (input)="filterPosts()"
+               placeholder="         Rechercher des posts..."
+               class="edgtf-search-input">
+        <i *ngIf="searchTerm"
+           class="fas fa-times edgtf-clear-icon"
+           (click)="clearSearch()"></i>
+      </div>
+    </div>
+    <div class="edgtf-create-post-fab" (click)="showPostForm = true">
+      <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- Ajouter ce formulaire en overlay à la fin du contenu -->
+    <div class="edgtf-post-form-overlay" *ngIf="showPostForm" (click)="showPostForm = false">
+      <div class="edgtf-post-form-container" (click)="$event.stopPropagation()">
+        <button class="edgtf-form-close" (click)="showPostForm = false">&times;</button>
+
+        <h3 class="edgtf-form-title">Créer un nouveau post</h3>
+
+        <form (submit)="submitPost()" class="edgtf-post-form">
+          <div class="edgtf-form-group">
+            <input type="text" [(ngModel)]="newPost.title" name="title"
+                   placeholder="Titre du post" required
+                   class="edgtf-form-input">
+            <button type="button"
+                    class="edgtf-voice-btn"
+                    (click)="startListening('title')">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+
+          <div class="edgtf-form-group">
+        <textarea [(ngModel)]="newPost.content" name="content"
+                  placeholder="Contenu du post..."
+                  rows="5" required
+                  class="edgtf-form-textarea"></textarea>
+            <button type="button"
+                    class="edgtf-voice-btn"
+                    (click)="startListening('content')">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+
+          <div class="edgtf-form-group">
+            <label class="edgtf-file-upload">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*">
+              <i class="fas fa-image"></i> Ajouter une image
+            </label>
+
+
+            <!-- Ajouter ce bouton après l'input file -->
+            <button
+              type="button"
+              class="edgtf-extract-btn"
+              (click)="extractTextFromImage()"
+              [disabled]="!selectedFile || isExtracting"
+            >
+              {{ isExtracting ? 'Extraction en cours...' : 'Extraire le texte' }}
+            </button>
+            <div *ngIf="previewImage" class="edgtf-image-preview">
+              <img [src]="previewImage" alt="Preview">
+            </div>
+          </div>
+
+
+          <button type="submit" class="edgtf-form-submit">Publier</button>
+        </form>
+      </div>
+    </div>
+    <div
+      class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax"
+      style="height: 400px;box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);background-image:url(../../../assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg);"
+      data-height="400">
+      <div class="edgtf-title-image">
+        <img itemprop="image" src="../../../assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg" alt="a"/>
+      </div>
+      <div class="edgtf-title-wrapper" style="height: 400px">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Posts</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row edgtf-grid-normal-gutter">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div class="edgtf-blog-holder edgtf-blog-standard edgtf-blog-pagination-standard" data-blog-type=standard
+                 data-next-page=2 data-max-num-pages=3 data-post-number=5 data-excerpt-length=53>
+              <div class="edgtf-blog-holder-inner">
+                <article *ngFor="let post of paginatedPosts" id="post-3417"
+
+                         class="edgtf-post-has-media post-3417 post type-post status-publish format-standard has-post-thumbnail hentry category-epic">
+                  <div class="edgtf-post-content">
+                    <div class="edgtf-post-heading">
+
+                      <div class="edgtf-post-image">
+                        <a [routerLink]="['/post', post.posId]" [title]="post.title">
+                          <img
+                            [src]="post.assets?.length > 0 ? baseUrl + post.assets[0].asset_url : 'assets/default-image.jpg'"
+                            [alt]="post.title"
+                            width="800"
+                            height="30"
+                            class="attachment-full size-full wp-post-image"
+                            decoding="async"
+                            fetchpriority="high"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div class="edgtf-post-text">
+                      <div class="edgtf-post-text-inner">
+                        <div class="edgtf-post-info-top">
+                          <div class="edgtf-post-info-category">
+                            <a href="../../category/epic/index.html" rel="category tag">Epic</a>
+                          </div>
+                        </div>
+                        <div class="edgtf-post-text-main">
+
+                          <h4 itemprop="name" class="entry-title edgtf-post-title">
+                            <a [routerLink]="['/post', post.postId]" [title]="post.title"
+                               [title]="post.title">
+                              {{ post.title }} </a>
+                          </h4>
+                          <div class="edgtf-post-excerpt-holder">
+                            <p itemprop="description" class="edgtf-post-excerpt">
+                              {{ post.content }}
+                            </p>
+                          </div>
+                        </div>
+                        <div class="edgtf-post-info-bottom clearfix">
+                          <div class="edgtf-post-info-bottom-left">
+                            <div itemprop="dateCreated" class="edgtf-post-info-date entry-date published updated">
+                              <a itemprop="url" href="../../2021/09/index.html">
+
+                                {{ post.creationDate | date: 'MMMM dd, yyyy' }} </a>
+                              <meta itemprop="interactionCount" content="UserComments: 0"/>
+                            </div>
+                            <div class="edgtf-post-info-author">
+                              <span class="edgtf-post-info-author-text">
+                                by </span>
+                              <a [routerLink]="['/post', post.postId]" class="edgtf-post-info-author-link">
+                                {{ post.publisher.firstName || 'Unknown' }} </a>
+                            </div>
+                            <div class="edgtf-post-info-comments-holder">
+                              <a [routerLink]="['/post', post.postId]">
+                                <i class="edgtf-icon-font-awesome fa fa-comment"></i>
+                                {{ post.commentCount || 0 }}
+                              </a>
+                            </div>
+
+                            <!-- Modifier la section des réactions -->
+                            <div class="edgtf-reactions-container">
+                              <div *ngFor="let type of reactionTypes"
+                                   class="edgtf-reaction"
+                                   [class.active]="userReactions.get(post.postId) === type"
+                                   (click)="toggleReaction(post, type)">
+    <span class="edgtf-reaction-emoji">
+      {{ getReactionEmoji(type) }}
+    </span>
+                                <span class="edgtf-reaction-count">
+      {{ post.reactionSummary?.counts[type] || 0 }}
+    </span>
+                              </div>
+                              <div class="edgtf-total-reactions">
+                                Total: {{ post.reactionSummary?.total || 0 }}
+                              </div>
+                            </div>
+
+
+                          </div>
+                          <div class="edgtf-post-info-bottom-right">
+                            <div class="edgtf-blog-share">
+                              <div class="edgtf-social-share-holder edgtf-list">
+                                <ul>
+                                  <li class="edgtf-facebook-share">
+                                    <a class="edgtf-share-link"
+                                       href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}"
+                                       target="_blank" rel="noopener noreferrer">
+                                      <span class="edgtf-social-network-icon fab fa-facebook"></span>
+                                    </a>
+                                  </li>
+                                  <li class="edgtf-twitter-share">
+                                    <a class="edgtf-share-link"
+                                       href="https://twitter.com/intent/tweet?url={{currentUrl}}&text=Regarde%20ce%20post!"
+                                       target="_blank" rel="noopener noreferrer">
+                                      <span class="edgtf-social-network-icon fab fa-twitter-square"></span>
+                                    </a>
+                                  </li>
+                                  <li class="edgtf-vk-share">
+                                    <a class="edgtf-share-link"
+                                       href="https://vk.com/share.php?url={{currentUrl}}"
+                                       target="_blank" rel="noopener noreferrer">
+                                      <span class="edgtf-social-network-icon fab fa-vk"></span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </article>
+
+
+              </div>
+
+              <div class="edgtf-blog-pagination">
+                <ul>
+                  <li class="edgtf-pag-number" [class.edgtf-pag-active]="currentPage === 1">
+                    <a (click)="goToPage(1)">1</a>
+                  </li>
+                  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+                    <li class="edgtf-pag-number"
+                        *ngIf="i > 0"
+                        [class.edgtf-pag-active]="currentPage === (i + 1)">
+                      <a (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+                    </li>
+                  </ng-container>
+
+                  <li class="edgtf-pag-next" *ngIf="currentPage < totalPages">
+                    <a (click)="goToPage(currentPage + 1)">
+                      <span class="arrow_triangle-right">›</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+
+              <div class="edgtf-blog-pagination-wp">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- close div.content_inner -->
+
+</div>

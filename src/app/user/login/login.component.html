@@ -1,0 +1,96 @@
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div
+      class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+      style="height: 240px; box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3); position: relative; overflow: hidden;"
+      data-height="240"
+    >
+      <!-- 🎥 Vidéo de fond -->
+      <video id="bg-video" autoplay muted loop playsinline
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <source src="assets/backgroundd.mp4" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo HTML5.
+      </video>
+
+      <!-- 🧾 Contenu au-dessus de la vidéo -->
+      <div class="edgtf-title-wrapper" style="height: 240px; position: relative; z-index: 1;">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">My account</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container edgtf-default-page-template">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div class="woocommerce">
+              <div class="woocommerce-notices-wrapper"></div>
+
+              <h2>Login</h2>
+
+              <form
+                class="woocommerce-form woocommerce-form-login login"
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmit()"
+              >
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="email">Username or email address&nbsp;<span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    formControlName="email"
+                    id="email"
+                    autocomplete="username"
+                  />
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                  </div>
+                </div>
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="password">Password&nbsp;<span class="required">*</span></label>
+                  <input
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    type="password"
+                    formControlName="password"
+                    id="password"
+                    autocomplete="current-password"
+                  />
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                  </div>
+                </div>
+
+                <div class="form-row buttons">
+                  <button
+                    type="submit"
+                    class="woocommerce-button button woocommerce-form-login__submit"
+                    [disabled]="loading"
+                  >
+                    Log in
+                  </button>
+                  <button
+                    type="button"
+                    class="woocommerce-button button woocommerce-form-register__submit login-button"
+                    (click)="navigateToRegister()"
+                  >
+                    Register
+                  </button>
+                </div>
+                <div class="woocommerce-LostPassword lost_password">
+                  <a [routerLink]="'/lostpassword'">Lost your password?</a>
+                </div>
+                <div *ngIf="error" class="error">
+                  {{ error }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- close div.content_inner -->
+</div>

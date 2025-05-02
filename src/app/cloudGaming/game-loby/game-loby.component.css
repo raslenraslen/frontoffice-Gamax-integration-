@@ -1,0 +1,127 @@
+.edgtf-instance-launch {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+  }
+  
+  .edgtf-instance-select {
+    margin-top: 15px;
+  }
+  
+  .edgtf-instance-select label {
+    margin-right: 10px;
+    color: #fff;
+  }
+  
+  .edgtf-instance-select input {
+    padding: 5px 10px;
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  .edgtf-instance-section {
+    margin-bottom: 40px;
+  }
+  
+  .edgtf-instance-section-title {
+    color: #fff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3a3a3a;
+  }
+  
+  .edgtf-instance-item {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .edgtf-instance-image {
+    width: 150px;
+    flex-shrink: 0;
+  }
+  
+  .edgtf-instance-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .edgtf-instance-details {
+    padding: 15px;
+    flex-grow: 1;
+  }
+  
+  .edgtf-instance-title {
+    color: #fff;
+    margin: 0 0 10px 0;
+  }
+  
+  .edgtf-instance-meta {
+    margin-bottom: 10px;
+  }
+  
+  .edgtf-instance-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  
+  .edgtf-instance-status.edgtf-online {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .edgtf-instance-status.edgtf-offline {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .edgtf-instance-game {
+    color: #aaa;
+    font-size: 13px;
+  }
+  
+  .edgtf-no-instances {
+    color: #aaa;
+    padding: 20px;
+    text-align: center;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+  }
+  
+  .edgtf-btn {
+    padding: 8px 20px;
+    background-color: #ff2d55;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edgtf-btn:hover {
+    background-color: #e61e4d;
+  }
+  
+  .edgtf-btn-outline {
+    background-color: transparent;
+    border: 1px solid #ff2d55;
+    color: #ff2d55;
+  }
+  
+  .edgtf-btn-outline:hover {
+    background-color: rgba(255, 45, 85, 0.1);
+  }
+  
+  .edgtf-btn-small {
+    padding: 5px 12px;
+    font-size: 13px;
+  }

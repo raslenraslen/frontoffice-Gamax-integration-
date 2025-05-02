@@ -1,0 +1,200 @@
+
+
+<div class="edgtf-content" >
+  <div class="edgtf-content-inner">
+<div class="edgtf-title-holder edgtf-centered-type edgtf-title-va-header-bottom edgtf-preload-background edgtf-has-bg-image edgtf-bg-parallax" style="height: 450px;box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3);background-image:url(../../../assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg);" data-height="450">
+<div class="edgtf-title-image">
+<img itemprop="image" src="../../../assets/wp-content/uploads/2018/06/blog-title-img-1-1.jpg" alt="a" />
+</div>
+<div class="edgtf-title-wrapper" style="height: 450px">
+<div class="edgtf-title-inner">
+  <div class="edgtf-grid">
+
+
+    <div class="edgtf-author-info">
+      <img *ngIf="post.publisher.profilePicture"
+           [src]="post.publisher.profilePicture"
+           class="edgtf-author-image">
+      <div class="edgtf-author-details">
+        <h3 class="edgtf-page-title entry-title">
+          {{ post.publisher.firstName }}
+          <span *ngIf="post.publisher.role === 'ADMIN'" class="edgtf-admin-badge">ADMIN</span>
+        </h3>
+        <span class="edgtf-post-date">
+          {{ post.creationDate | date: 'mediumDate' }}
+        </span>
+      </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="edgtf-container">
+
+<div class="edgtf-container-inner clearfix">
+<div class="edgtf-grid-row edgtf-content-has-sidebar edgtf-grid-normal-gutter">
+<div class="edgtf-page-content-holder edgtf-grid-col-8">
+<div class="edgtf-blog-holder edgtf-blog-single edgtf-blog-single-standard">
+<article id="post-3417" class="post-3417 post type-post status-publish format-standard has-post-thumbnail hentry category-epic">
+  <div class="edgtf-post-content" *ngIf="post">
+    <div class="edgtf-post-heading">
+      <div class="edgtf-post-image">
+        <img
+        [src]="post.assets?.length > 0 ? baseUrl +  post.assets[0].asset_url : 'assets/default-image.jpg'"
+        [alt]="post.title"
+        width="800"
+        height="30"
+        class="attachment-full size-full wp-post-image"
+        decoding="async"
+        fetchpriority="high"
+      />      </div>
+    </div>
+
+    <div class="edgtf-post-text">
+      <div class="edgtf-post-text-inner">
+        <div class="edgtf-post-info-top">
+          <div class="edgtf-post-info-date entry-date published updated">
+          <a > {{ post.creationDate | date: 'MMMM dd, yyyy' }} </a>
+          </div>
+          <div class="edgtf-post-info-author">
+            <span class="edgtf-post-info-author-text">by</span>
+            <a class="edgtf-post-info-author-link" href="#">
+              {{  post.publisher.firstName}}
+            </a>
+          </div>
+          <div class="edgtf-post-info-category">
+            <a href="#" rel="category tag">{{ post.title }}</a>
+          </div>
+        </div>
+
+        <div class="edgtf-post-text-main">
+          <h4 class="entry-title edgtf-post-title">{{ post.title }}</h4>
+
+          <div class="elementor-widget-container">
+            <p>{{ post.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</article>
+<div class="edgtf-blog-single-navigation">
+  <div class="edgtf-blog-single-navigation-inner clearfix">
+    <a routerLink="/post" class="edgtf-blog-single-prev">
+      <span class="edgtf-blog-single-nav-mark arrow_triangle-left"></span>
+      <span class="edgtf-blog-single-nav-label">
+
+        <!-- Ou simplement -->
+        Retour à la liste
+      </span>
+    </a>
+  </div>
+</div>
+
+<div class="edgtf-comment-holder clearfix" id="comments">
+  <div class="edgtf-comment-holder" *ngIf="comments.length > 0; else noComments">
+    <h3>Commentaires</h3>
+    <ul class="edgtf-comment-list">
+      <li *ngFor="let comment of comments" class="edgtf-comment-item">
+        <div class="edgtf-comment-content">
+          <div class="edgtf-comment-info">
+            <strong>{{ comment.author.firstName }}</strong>
+            <span>({{ comment.createdAt | date: 'short' }})</span>
+      <!-- Modifiez la ligne des actions -->
+      <div *ngIf="authService.currentUserValue?.userId === comment.author.id && !comment.blocked"
+      class="edgtf-comment-actions">
+              <button (click)="toggleEdit(comment)" class="edgtf-edit-btn">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="deleteComment(comment.id)" class="edgtf-delete-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="!comment.isEditing; else editForm">
+            <div *ngIf="!comment.blocked; else blockedTemplate">
+              <p>{{ comment.content }}</p>
+            </div>
+            <ng-template #blockedTemplate>
+              <div class="edgtf-blocked-comment">
+                <i class="fas fa-ban"></i>
+                <span>Ce commentaire a été bloqué par l'administrateur</span>
+              </div>
+            </ng-template>
+          </div>
+
+          <ng-template #editForm>
+            <textarea [(ngModel)]="comment.editedContent" class="edgtf-edit-textarea"></textarea>
+            <div class="edgtf-edit-actions">
+              <button (click)="saveComment(comment)" class="edgtf-save-btn">Enregistrer</button>
+              <button (click)="cancelEdit(comment)" class="edgtf-cancel-btn">Annuler</button>
+            </div>
+          </ng-template>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+<ng-template #noComments>
+  <div class="edgtf-comment-holder">
+    <p class="no-comments">Aucun commentaire pour ce post.</p>
+  </div>
+</ng-template>
+
+<div class="edgtf-comment-form">
+  <div class="edgtf-comment-form-inner">
+    <div id="respond" class="comment-respond">
+      <h5 id="reply-title" class="comment-reply-title">Add Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">cancel reply</a></small></h5>
+      <form (submit)="submitComment()" class="comment-form">
+        <div *ngIf="authService.currentUserValue" class="user-info">
+          <span class="logged-in-as">
+            Commenter en tant que :
+            <strong>{{ authService.currentUserValue.firstName }} </strong>
+          </span>
+        </div>
+
+        <div *ngIf="!authService.currentUserValue" class="login-warning">
+          Connectez-vous pour commenter
+        </div>
+
+        <textarea
+          [(ngModel)]="newComment.content"
+          name="comment"
+          placeholder="Votre commentaire"
+          required
+          [disabled]="!authService.currentUserValue">
+        </textarea>
+
+        <!-- Supprimer le champ de saisie du nom -->
+
+        <div class="form-submit">
+          <button
+            type="submit"
+            class="submit"
+            [disabled]="!authService.currentUserValue">
+            Envoyer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="edgtf-sidebar-holder edgtf-grid-col-4">
+<aside class="edgtf-sidebar">
+
+
+
+
+
+
+  <!-- Ajoute ce script en bas de ta page (juste avant </body>) si ce n’est pas déjà fait -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+

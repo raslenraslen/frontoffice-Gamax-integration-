@@ -1,0 +1,46 @@
+<section class="edgtf-side-menu">
+  <div class="edgtf-side-area-inner">
+    <a class="edgtf-close-side-menu edgtf-close-side-menu-svg-path" href="#">
+      <svg version="1.1" class="edgtf-side-area-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.922px" height="23.916px" viewBox="0 0 23.922 23.916" enable-background="new 0 0 23.922 23.916" xml:space="preserve">
+        <polygon fill="#ffffff" points="23.923,20.992 14.889,11.958 23.915,2.932 20.984,0.001 11.958,9.027 2.938,0.006 0.006,2.938 
+  9.026,11.958 0,20.984 2.932,23.916 11.958,14.89 20.992,23.923 " />
+      </svg>
+    </a>
+    <div class="widget edgtf-separator-widget">
+      <div class="edgtf-separator-holder clearfix edgtf-separator-center edgtf-separator-normal">
+        <div class="edgtf-separator" style="border-style: solid; margin-bottom: -11px"></div>
+      </div>
+    </div>
+    <div *ngIf="currentUser" class="user-info">
+      <header class="user-header">
+        <img [src]="currentUser.profilePictureUrl" alt="User Image" class="profile-image" *ngIf="currentUser.profilePictureUrl">
+      </header>
+      <h3 class="welcome-message">Welcome, {{ currentUser.firstName }} {{ currentUser.lastName }}</h3>
+      <div class="user-details">
+        <p><strong>User ID:</strong> {{ currentUser.userId }}</p>
+        <p><strong>Email:</strong> {{ currentUser.email }}</p>
+        <p><strong>First Name:</strong> {{ currentUser.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ currentUser.lastName }}</p>
+      </div>
+      <input type="file" (change)="onFileSelected($event)" *ngIf="!isFileUploaded">
+    </div>
+  </div>
+  <div class="edgtf-side-area-bottom">
+    <button class="auth-button" (click)="handleAuthAction()">
+      {{ currentUser ? 'Logout' : 'Login' }}
+    </button>
+    <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover" style="font-size: 13px; margin: 0 12px" href="https://www.facebook.com/QodeInteractive/" target="_blank">
+      <span class="edgtf-social-icon-widget fab fa-facebook-square"></span>
+    </a>
+    <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover" style="font-size: 13px; margin: 0 12px" href="https://twitter.com/QodeInteractive" target="_blank">
+      <span class="edgtf-social-icon-widget fab fa-twitter-square"></span>
+    </a>
+    <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover" style="font-size: 13px; margin: 0 12px" href="https://www.youtube.com/channel/UC-h62vMXD5aZV5zAULD-SuA" target="_blank">
+      <span class="edgtf-social-icon-widget fab fa-youtube"></span>
+    </a>
+    <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover" style="font-size: 13px; margin: 0 12px" href="https://www.instagram.com/qodeinteractive/" target="_blank">
+      <span class="edgtf-social-icon-widget fab fa-instagram"></span>
+    </a>
+    <button class="edit-button" (click)="navigateToUserDetails()">Edit User Details</button>
+  </div>
+</section>

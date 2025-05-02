@@ -1,0 +1,11 @@
+@media only screen and (max-width: 1024px){
+.edgtf-content .edgtf-content-inner > .edgtf-container > .edgtf-container-inner, .edgtf-content .edgtf-content-inner > .edgtf-full-width > .edgtf-full-width-inner { padding: 100px 0 92px;}}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+h1 { font-size: 70px;}h2 { font-size: 48px;}h3 { font-size: 42px;}}
+
+@media only screen and (min-width: 681px) and (max-width: 768px){
+h1 { font-size: 70px;}h2 { font-size: 48px;}h3 { font-size: 42px;}}
+
+@media only screen and (max-width: 680px){
+h1 { font-size: 45px;}h2 { font-size: 40px;}h3 { font-size: 35px;}h4 { font-size: 28px;}}

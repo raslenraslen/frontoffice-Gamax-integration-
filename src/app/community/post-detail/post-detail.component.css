@@ -1,0 +1,330 @@
+/* Variables de couleur */
+:root {
+  --primary-dark: #0a0a0a;
+  --secondary-dark: #181818;
+  --accent-red: #e74c3c;
+  --accent-blue: #3498db;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --hover-light: rgba(255, 255, 255, 0.1);
+}
+
+/* Styles généraux */
+.edgtf-content-inner {
+  background-color: var(--primary-dark);
+  color: var(--text-primary);
+}
+
+/* En-tête */
+.edgtf-title-holder {
+  background-color: var(--secondary-dark);
+}
+
+.edgtf-author-info {
+  background: rgba(25, 25, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edgtf-page-title {
+  color: var(--text-primary);
+}
+
+.edgtf-admin-badge {
+  background: var(--accent-red);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.edgtf-post-date {
+  color: var(--text-secondary);
+}
+
+/* Contenu principal */
+.edgtf-post-content {
+  background: var(--secondary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.entry-title.edgtf-post-title {
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.elementor-widget-container p {
+  color: var(--text-secondary);
+}
+
+/* Commentaires */
+.edgtf-comment-item {
+  background: var(--primary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.edgtf-comment-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.edgtf-edit-btn, .edgtf-delete-btn {
+  color: var(--text-secondary);
+}
+
+.edgtf-blocked-comment {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid var(--accent-red);
+}
+
+/* Formulaire de commentaire */
+.edgtf-comment-form {
+  background: var(--primary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comment-form textarea {
+  background: var(--secondary-dark);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.form-submit button {
+  background: var(--accent-blue);
+  transition: all 0.3s ease;
+}
+
+.form-submit button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Sidebar */
+.widget {
+  background: var(--secondary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.edgtf-widget-title {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-blue);
+}
+
+/* Éléments interactifs */
+.edgtf-search-input:focus,
+.comment-form textarea:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edgtf-author-info {
+    background: rgba(25, 25, 25, 0.9);
+  }
+}
+
+/* Améliorations visuelles */
+.edgtf-comment-item {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.edgtf-post-image img {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.fas {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+
+/* Section Commentaires */
+.edgtf-comment-holder {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.edgtf-comment-list {
+  margin: 0;
+  padding: 0;
+}
+
+/* Item Commentaire */
+.edgtf-comment-item {
+  background: #242424;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.edgtf-comment-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* En-tête Commentaire */
+.edgtf-comment-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #363636;
+}
+
+.edgtf-comment-info strong {
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.edgtf-comment-info span {
+  color: #7a7a7a;
+  font-size: 0.85rem;
+}
+
+/* Actions Commentaire */
+.edgtf-comment-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.edgtf-edit-btn, 
+.edgtf-delete-btn {
+  background: none;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edgtf-edit-btn {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+.edgtf-delete-btn {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.edgtf-edit-btn:hover {
+  background: rgba(52, 152, 219, 0.2);
+  transform: scale(1.05);
+}
+
+.edgtf-delete-btn:hover {
+  background: rgba(231, 76, 60, 0.2);
+  transform: scale(1.05);
+}
+
+/* Commentaire Bloqué */
+.edgtf-blocked-comment {
+  background: rgba(231, 76, 60, 0.05);
+  border: 1px solid rgba(231, 76, 60, 0.15);
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #e74c3c;
+}
+
+.edgtf-blocked-comment i {
+  font-size: 1.2rem;
+}
+
+/* Formulaire d'édition */
+.edgtf-edit-textarea {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #363636;
+  color: #e0e0e0;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.edgtf-edit-textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.edgtf-edit-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.edgtf-save-btn,
+.edgtf-cancel-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.edgtf-save-btn {
+  background: #3498db;
+  color: white;
+}
+
+.edgtf-cancel-btn {
+  background: #404040;
+  color: #b0b0b0;
+}
+
+.edgtf-save-btn:hover {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.edgtf-cancel-btn:hover {
+  background: #4a4a4a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edgtf-comment-item {
+    padding: 1rem;
+  }
+  
+  .edgtf-comment-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .edgtf-edit-btn, 
+  .edgtf-delete-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Transition globale pour les interactions */
+* {
+  transition: 
+    background-color 0.3s ease,
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+}
+
+/* Animation de chargement skeleton */
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50% }
+  100% { background-position: 0 50% }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+

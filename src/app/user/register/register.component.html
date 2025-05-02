@@ -1,0 +1,221 @@
+<!-- Dans src/app/auth/register/register.component.html -->
+
+<div class="edgtf-content">
+  <div class="edgtf-content-inner">
+    <div
+      class="edgtf-title-holder edgtf-standard-type edgtf-title-va-header-bottom"
+      style="height: 240px; box-shadow: 15px 15px 21px 0px rgba(1, 1, 1, 0.3); position: relative; overflow: hidden;"
+      data-height="240"
+    >
+      <!-- 🎥 Vidéo de fond -->
+      <video id="bg-video" autoplay muted loop playsinline
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <source src="assets/backgroundd.mp4" type="video/mp4" />
+        Ton navigateur ne supporte pas la vidéo HTML5.
+      </video>
+
+    
+      <div class="edgtf-title-wrapper" style="height: 240px; position: relative; z-index: 1;">
+        <div class="edgtf-title-inner">
+          <div class="edgtf-grid">
+            <h3 class="edgtf-page-title entry-title">Register</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgtf-container edgtf-default-page-template">
+      <div class="edgtf-container-inner clearfix">
+        <div class="edgtf-grid-row">
+          <div class="edgtf-page-content-holder edgtf-grid-col-12">
+            <div class="woocommerce">
+              <div class="woocommerce-notices-wrapper"></div>
+
+              <h2>Register</h2>
+
+              <form
+                class="woocommerce-form woocommerce-form-register register"
+                [formGroup]="registerForm"
+                (ngSubmit)="onSubmit()"
+              >
+                <!-- Champ Full Name -->
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="fullName">Full Name <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    formControlName="fullName"
+                    id="fullName"
+                    autocomplete="name"
+                  />
+                  <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['fullName'].errors['required']">Full Name is required</div>
+                  </div>
+                </div>
+
+                <!-- Champ Email -->
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="email">Email address <span class="required">*</span></label>
+                  <input
+                    type="email"
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    formControlName="email"
+                    id="email"
+                    autocomplete="email"
+                  />
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                  </div>
+                </div>
+
+               
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="password">Password <span class="required">*</span></label>
+                  <input
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    type="password"
+                    formControlName="password"
+                    id="password"
+                    autocomplete="new-password"
+                  />
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                  </div>
+                </div>
+
+                
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label for="username">Username <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="woocommerce-Input woocommerce-Input--text input-text"
+                    formControlName="username"
+                    id="username"
+                    autocomplete="username"
+                  />
+                  <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+                  </div>
+                </div>
+
+               
+                <div class="woocommerce-form-row form-row form-row-wide" style="margin-top: 10px; margin-bottom: 20px ;display: flex; gap: 10px; align-items: center; justify-content: space-between;">
+                  <button type="button" class="username-check-button"
+            (click)="checkUsernameAvailability()"
+            [disabled]="usernameCheckLoading || !usernameControl?.value || usernameControl?.invalid"> 
+        <span *ngIf="usernameCheckLoading">Vérification...</span>
+        <span *ngIf="!usernameCheckLoading">Vérifier disponibilité</span>
+    </button>
+
+                    <button type="button" class="ai-suggest-button" (click)="toggleAiGenerator()"  style="margin-left: 2px; ">
+                        <span *ngIf="!showAiGenerator">Suggest Usernames</span>
+                        <span *ngIf="showAiGenerator">Hide the Generator</span>
+                    </button>
+                </div>
+               
+                 <div *ngIf="showAiGenerator" class="ai-generator-container" style="border: 1px solid #eee; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+                    <app-username-generator
+                       (usernameSelected)="handleUsernameSelectedFromAi($event)">
+                    </app-username-generator>
+                 </div>
+               
+                <div *ngIf="usernameAvailability === 'taken'" class="username-taken-suggestion-section" style="margin-top: 20px; padding: 15px; border: 1px dashed ; border-radius: 5px; background-color: #1a181c; ; ">
+                  <p style="color: #ff4d4f; font-weight: bold;">
+                     
+                      {{ usernameAvailabilityMessage }}
+                  </p>
+                  <p>
+                       Cliquez ci-dessous pour des suggestions alternatives :
+                  </p>
+             
+                  <button type="button" class="woocommerce-button button" (click)="suggestSimilarAlternatives()" [disabled]="isLoadingSuggestions">
+                      <span *ngIf="isLoadingSuggestions">Recherche de suggestions...</span>
+                      <span *ngIf="!isLoadingSuggestions">Suggérer des noms similaires IA</span>
+                  </button>
+             
+                  <div *ngIf="suggestionError" class="alert alert-warning mt-2">
+                      {{ suggestionError }}
+                  </div>
+             
+                  <div *ngIf="suggestedUsernames.length > 0" class="suggestions-list mt-3">
+                      <p>Suggestions disponibles :</p>
+                      <ul>
+                          <li *ngFor="let suggestion of suggestedUsernames">
+                              <span>{{ suggestion }}</span>
+                              <button (click)="selectSuggestedUsername(suggestion)" class="btn btn-sm btn-success ml-2">Choisir</button>
+                          </li>
+                      </ul>
+                  </div>
+                   
+                   <p *ngIf="!isLoadingSuggestions && suggestedUsernames.length === 0 && !suggestionError" style="font-style: italic; font-size: 0.9em; color: #eee;">
+                       Aucune suggestion similaire disponible trouvée pour le moment.
+                   </p>
+             </div>
+               
+
+
+               
+                <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide form-row-split">
+                  <div class="form-row-item">
+                    <label for="age">Age <span class="required">*</span></label>
+                    <input
+                      type="number"
+                      class="woocommerce-Input woocommerce-Input--text input-text"
+                      formControlName="age"
+                      id="age"
+                      autocomplete="age"
+                    />
+                    <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+                      <div *ngIf="f['age'].errors['required']">Age is required</div>
+                    </div>
+                  </div>
+                  <div class="form-row-item">
+                    <label for="birthday">Birthday <span class="required">*</span></label>
+                    <input
+                      type="date"
+                      class="woocommerce-Input woocommerce-Input--text input-text"
+                      formControlName="birthday"
+                      id="birthday"
+                      autocomplete="bday"
+                    />
+                    <div *ngIf="submitted && f['birthday'].errors" class="invalid-feedback">
+                      <div *ngIf="f['birthday'].errors['required']">Birthday is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="form-row buttons">
+                  <button
+                    type="submit"
+                    class="woocommerce-button button woocommerce-form-register__submit"
+                    [disabled]="loading"
+                  >
+                    Register
+                  </button>
+                  <button
+                    type="button"
+                    class="woocommerce-button button woocommerce-form-login__submit login-button"
+                    (click)="navigateToLogin()"
+                  >
+                    Login
+                  </button>
+                </div>
+
+                
+                <div class="g-recaptcha" data-sitekey="6LdXdgcrAAAAACuDVu5yrs9YQJRb4lcsHwn7T4hI" id="recaptcha-container" style=" margin-top: 20px; width: 50px;"></div>
+                
+                <div *ngIf="error" class="error"> {{ error }} </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

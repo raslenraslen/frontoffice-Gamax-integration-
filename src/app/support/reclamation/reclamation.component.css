@@ -1,0 +1,327 @@
+.woocommerce {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  background-color: #333;
+  border-left: 4px solid #ff3333;
+  color: #fff;
+}
+
+/* ============== BOUTONS ============== */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+ 
+    opacity: 1;
+  background-color: #ff3333;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #ff0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.btn-secondary:hover {
+  background-color: #444;
+  color: white;
+}
+
+/* ============== FORMULAIRE ============== */
+.reclamation-form {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid #444;
+}
+
+.form-group label {
+  color: #ff6666;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff3333;
+  box-shadow: 0 0 0 2px rgba(255, 51, 51, 0.3);
+}
+
+.status-display {
+  padding: 0.75rem;
+  background-color: #333;
+  border-radius: 4px;
+  border: 1px solid #444;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-open {
+  background-color: #662222;
+  color: #ff6666;
+}
+
+/* ============== TABLEAU ============== */
+.reclamations-list {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid #444;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #e0e0e0;
+}
+
+.table th {
+  background-color: #333;
+  padding: 1rem;
+  text-align: left;
+  color: #ff6666;
+  border-bottom: 2px solid #ff3333;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+}
+
+.table tr:hover td {
+  background-color: #333;
+}
+
+/* Boutons dans le tableau */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.btn-info {
+  background-color: #3366cc;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #cc3333;
+  color: white;
+}
+
+.btn-preview {
+  background-color: #9933cc;
+  color: white;
+}
+
+.btn-info:hover, .btn-danger:hover, .btn-preview:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+/* ============== UPLOAD DE FICHIER ============== */
+.file-input-container {
+  margin: 2rem 0;
+  position: relative;
+}
+
+.file-input-label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #ff6666;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.file-input-wrapper {
+  position: relative;
+  border: 2px dashed #555;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: rgba(51, 51, 51, 0.5);
+  cursor: pointer;
+}
+
+.file-input-wrapper:hover {
+  border-color: #ff3333;
+  background-color: rgba(51, 51, 51, 0.8);
+}
+
+.file-input-label-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e0e0e0;
+}
+
+.file-input-label-inside i {
+  font-size: 1.75rem;
+  color: #ff3333;
+}
+
+.file-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ============== PREVIEW MODAL ============== */
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.preview-modal-content {
+  background-color: #2a2a2a;
+  border: 1px solid #ff3333;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow: auto;
+  padding: 2rem;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ff6666;
+}
+
+.image-preview img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.image-preview img:hover {
+  transform: scale(1.02);
+}
+
+.pdf-preview object {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.unsupported-preview {
+  color: #e0e0e0;
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.unsupported-preview i {
+  margin-bottom: 1rem;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 768px) {
+  .edgtf-page-title {
+    font-size: 2rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .preview-modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .image-preview img,
+  .pdf-preview object {
+    max-height: 60vh;
+    height: auto;
+  }
+
+}
+
+.edgtf-page-content-holder .action-buttons .btn-primary {
+  opacity: 1
+}

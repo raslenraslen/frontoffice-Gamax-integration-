@@ -1,0 +1,247 @@
+.pricing-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.pricing-plan {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.pricing-plan:hover {
+  transform: translateY(-5px);
+}
+
+.pricing-plan.highlighted {
+  border: 2px solid #ff0e1f;
+  position: relative;
+  transform: scale(1.05);
+}
+
+.pricing-plan.highlighted::before {
+  content: 'POPULAR';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: #ff0e1f;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.plan-header {
+  margin-bottom: 20px;
+}
+
+.plan-header h2 {
+  color: #333;
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.plan-header .plan-price {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff0e1f;
+  margin: 10px 0;
+}
+
+.plan-header .plan-websites {
+  color: #666;
+  font-size: 14px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px;
+  text-align: left;
+}
+
+.plan-features li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.buy-button {
+  background: #ff0e1f;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  width: 100%;
+}
+
+.buy-button:hover {
+  background: #e60017;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .pricing-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-plan {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .pricing-plan.highlighted {
+    transform: none;
+  }
+}
+
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+.success {
+  background-color: #4caf50;
+}
+
+.error {
+  background-color: #f44336;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+.pricing-plan {
+  /* ... */
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.buy-button {
+  /* ... */
+  will-change: transform;
+}
+
+
+.pricing-plan.highlighted::before {
+  z-index: 1;
+}
+
+.buy-button {
+  position: relative;
+  z-index: 2;
+}
+
+
+.pricing-plan.highlighted {
+  border: 2px solid #ff0e1f;
+  position: relative;
+  box-shadow: 0 0 10px #ff0e1f;
+}
+
+
+
+body, .main-container { /* You might need to adjust the selector */
+  background-color: #1a1a1a; /* Adjust to your actual background color */
+  color: #f0f0f0; /* Adjust to your actual text color */
+}
+
+.comparison-table {
+  padding: 40px;
+  background-color: #333; /* Dark background for the table */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Adjusted shadow */
+  text-align: center;
+  margin: 40px auto;
+  width: 90%; /* Make it more fluid */
+  max-width: 1200px; /* Optional: set a maximum width */
+}
+
+.comparison-table h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #f0f0f0; /* Light text color */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+  border: 1px solid #555; /* Darker border */
+}
+
+th {
+  background-color: #ff0e1f;
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  background-color: #444; /* Slightly lighter dark background for cells */
+  color: #f0f0f0; /* Light text color */
+}
+
+td, th {
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: #555; /* Even lighter dark background for zebra striping */
+}
+
+td {
+  font-size: 16px;
+}
+
+tr:hover {
+  background-color: #666; /* Slightly lighter on hover */
+}
+
+@media (max-width: 768px) {
+  .comparison-table {
+    padding: 20px;
+    margin: 20px auto;
+    width: 100%; /* Make it full width on smaller screens */
+  }
+
+  th, td {
+    padding: 10px;
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .comparison-table h2 {
+    font-size: 24px; /* Adjust heading size for smaller screens */
+  }
+}
+
+

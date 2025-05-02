@@ -1,0 +1,66 @@
+.user-info {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .user-header {
+    margin-bottom: 10px;
+  }
+  
+  .profile-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .welcome-message {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .user-details {
+    margin-top: 10px;
+    text-align: left;
+    padding: 0 20px;
+  }
+  
+  .user-details p {
+    margin: 5px 0;
+  }
+  
+  .user-details p strong {
+    color: #333;
+  }
+  
+  .auth-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .auth-button:hover {
+    background-color: darkred;
+  }
+
+  .edit-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .edit-button:hover {
+    background-color: darkred;
+  }

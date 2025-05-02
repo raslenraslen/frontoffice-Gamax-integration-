@@ -1,0 +1,41 @@
+<!-- Dans src/app/components/ai/username-generator/username-generator.component.html -->
+
+<!-- C'est le contenu de votre modale ou side menu -->
+
+<h3>Générateur de noms d'utilisateur IA</h3>
+
+<div class="form-group">
+    <label for="aiDescription">Décrivez le type de nom d'utilisateur que vous souhaitez :</label>
+    <textarea id="aiDescription" name="aiDescription" [(ngModel)]="aiDescription" rows="4" placeholder="Ex: un nom de guerrier nordique, inspiré par la science-fiction, un nom court et percutant..."></textarea>
+</div>
+
+<!-- Le bouton pour déclencher la génération -->
+<!-- Désactivé pendant le chargement -->
+<!-- Utilisation de classes CSS pour le style (vous devrez les ajouter) -->
+<button (click)="generateSuggestions()" [disabled]="isLoadingSuggestions" class="btn btn-danger">
+    <span *ngIf="isLoadingSuggestions">Génération en cours...</span>
+    <span *ngIf="!isLoadingSuggestions">Générer des suggestions</span>
+</button>
+
+<!-- Affichage du message de chargement ou de l'erreur -->
+<div *ngIf="isLoadingSuggestions" class="loading-message">
+    Chargement des suggestions...
+</div>
+<div *ngIf="aiError" class="alert alert-danger mt-2">
+    {{ aiError }}
+</div>
+
+<!-- Affichage des suggestions de noms -->
+<div *ngIf="suggestedUsernames.length > 0" class="suggestions-list mt-3">
+    <p>Suggestions :</p>
+    <ul>
+        <li *ngFor="let suggestion of suggestedUsernames">
+            <span>{{ suggestion }}</span>
+            <!-- Bouton pour sélectionner un nom (appelle selectUsername) -->
+            <button (click)="selectUsername(suggestion)" class="btn btn-sm btn-secondary ml-2">Choisir</button>
+        </li>
+    </ul>
+</div>
+
+<!-- Optionnel: Bouton pour fermer la modale/side menu (dépend de l'implémentation de la modale) -->
+<!-- <button (click)="closeModal()">Fermer</button> -->
