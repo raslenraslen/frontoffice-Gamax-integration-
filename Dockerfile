@@ -1,32 +1,25 @@
-# Étape 1 : Construction de l'application Angular
-FROM node:20-alpine AS build
+# === Dockerfile Simple avec ng serve (POUR DÉVELOPPEMENT) ===
 
-# Définir le répertoire de travail
+# 1. Choisir une image Node.js
+FROM node:18-alpine
+
+# 2. Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json pour installer les dépendances
-COPY package.json package-lock.json ./
+# 3. Copier package.json et package-lock.json pour le cache
+COPY package.json package-lock.json* ./
 
-# Installer les dépendances
+# 4. Installer les dépendances (avec le contournement OBLIGATOIRE pour ton projet)
 RUN npm install --legacy-peer-deps
 
-# Copier le reste du code source
+# 5. Copier TOUT le reste de ton code source
+#    !!! Assure-toi d'avoir un fichier .dockerignore pour exclure node_modules, .git, dist etc. !!!
 COPY . .
 
-# Construire l'application pour production
-RUN npm run build --prod
+# 6. Indiquer que le port 4200 sera utilisé (port par défaut de ng serve)
+EXPOSE 4200
 
-# Étape 2 : Image finale NGINX pour servir l'application
-FROM nginx:stable-alpine
-
-# Copier les fichiers construits dans le répertoire NGINX
-COPY --from=build /app/dist/* /usr/share/nginx/html
-
-# Copier la configuration par défaut de NGINX (optionnel si customisation)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# Exposer le port 80
-EXPOSE 80
-
-# Démarrer NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# 7. Commande pour démarrer l'application avec le serveur de développement Angular
+#    'npx' exécute la version de 'ng' de ton projet.
+#    '--host 0.0.0.0' est INDISPENSABLE pour y accéder depuis l'extérieur du conteneur.
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0"]
