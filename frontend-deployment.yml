@@ -1,0 +1,45 @@
+apiVersion: apps/v1 # Version de l'API pour les Deployments
+kind: Deployment # Type de ressource : un Deployment
+metadata:
+  name: angular-frontend-deployment # Nom de ton Deployment
+  labels:
+    app: angular-frontend # Label pour identifier ce Deployment
+
+spec:
+  replicas: 2 # Nombre d'instances (pods) de ton frontend que tu veux faire tourner
+  selector:
+    matchLabels:
+      app: angular-frontend # Le Deployment gérera les pods avec ce label
+  template: # Le template pour créer les pods
+    metadata:
+      labels:
+        app: angular-frontend # Labels pour les pods créés
+    spec:
+      containers:
+      - name: angular-frontend-container # Nom du conteneur dans le pod
+        image:  raslenmissaoui061/frontend-gamax:latest # Remplace par ton utilisateur Docker Hub et le nom de ton image
+        ports:
+        - containerPort: 80 # Le port sur lequel ton application frontend tourne dans le conteneur (port par défaut pour Angular avec Nginx/Apache souvent)
+        # env: # Optionnel: Variables d'environnement pour ton frontend
+        # - name: API_BASE_URL # Par exemple, l'URL de ton backend
+        #   value: "http://backend-service:8080" # Le nom du service Kubernetes de ton backend + son port
+
+--- # Séparateur pour définir une autre ressource dans le même fichier
+
+apiVersion: v1 # Version de l'API pour les Services
+kind: Service # Type de ressource : un Service
+metadata:
+  name: angular-frontend-service # Nom de ton Service (c'est par ce nom que tu y accèderas)
+  labels:
+    app: angular-frontend # Label pour identifier ce Service
+
+spec:
+  selector:
+    app: angular-frontend # Ce Service envoie le trafic aux pods avec ce label (ceux du Deployment ci-dessus)
+  ports:
+  - protocol: TCP
+    port: 80 # Le port du Service (le port par lequel tu accèdes au Service depuis l'extérieur ou d'autres pods)
+    targetPort: 4200 # Le port sur le conteneur du pod (celui défini dans le Deployment)
+  type: NodePort # Type de Service pour exposer ton frontend à l'extérieur du cluster
+
+  
